@@ -101,6 +101,18 @@
   <!-- Fonts - Optimized loading -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
+  <!-- MathJax for LaTeX rendering -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  
   <!-- Defer non-critical JavaScript -->
   <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
@@ -411,35 +423,10 @@
         <h2 class="title is-3">Framework</h2>
         <div class="content has-text-justified">
           <p>
-            The SCOPE pipeline synergistically
-            constructs scene-instruction pairs. During scene generation,
-            the system integrates external statistical feedback with dynamic asset sampling, compelling LLMs to explore long-
-            tail distributions via an inverse-frequency weighting strategy.
-            To avoid logical errors from directly generating complex
-            topologies, the model outputs a lightweight Domain-Specific
-            Language (DSL) that a compiler losslessly maps into the scene
-            graph SG. Subsequently, the system linearizes the nested
-            scene graph into concise text. Leveraging LLM generative
-            CoT reasoning, it synthesizes task instructions following the
-            sequence: Target Sampling → Action Chain Construction →
-            Instruction Language Embodiment. After filtering hallucinations via set-matching-based physical feasibility verification,
-            the pipeline outputs valid task instructions I.
+            The SCOPE pipeline synergistically constructs scene-instruction pairs. During scene generation, the system integrates external statistical feedback with dynamic asset sampling, compelling LLMs to explore long-tail distributions via an inverse-frequency weighting strategy. To avoid logical errors from directly generating complex topologies, the model outputs a lightweight Domain-Specific Language (DSL) that a compiler losslessly maps into the scene graph $SG$. Subsequently, the system linearizes the nested scene graph into concise text. Leveraging LLM generative CoT reasoning, it synthesizes task instructions following the sequence: Target Sampling $\rightarrow$ Action Chain Construction $\rightarrow$ Instruction Language Embodiment. After filtering hallucinations via set-matching-based physical feasibility verification, the pipeline outputs valid task instructions $I$.
           </p>
           <p>
-            To guarantee task physical executability, the pipeline
-            transforms the tuple ⟨SG, I⟩ into a PDDL problem, decomposing it into serialized sub-tasks delegated to a heuristic
-            planner for sequential resolution and verification. Confronted
-            with resolution failures, the system discards the passive
-            discard-on-error strategy. Instead, it retroactively calculates
-            the structural state deficiency σi responsible for the failure
-            and triggers a Symbolic Rule-Neural Network dual-layer
-            module to precisely complete missing physical attributes. The
-            repaired scene state autoregressively returns to the planner for
-            continued planning until all valid sub-plans πi concatenate
-            into a complete execution sequence Π. This Decomposition-
-            Planning-Repair closed loop ultimately yields a high-quality
-            data tuple E = ⟨SGf inal, I, Π⟩, providing robust data for
-            fine-tuning embodied models.
+            To guarantee task physical executability, the pipeline transforms the tuple $\langle SG, I \rangle$ into a PDDL problem, decomposing it into serialized sub-tasks delegated to a heuristic planner for sequential resolution and verification. Confronted with resolution failures, the system discards the passive discard-on-error strategy. Instead, it retroactively calculates the structural state deficiency $\sigma_{i}$ responsible for the failure and triggers a Symbolic Rule-Neural Network dual-layer module to precisely complete missing physical attributes. The repaired scene state autoregressively returns to the planner for continued planning until all valid sub-plans $\pi_{i}$ concatenate into a complete execution sequence $\Pi$. This Decomposition-Planning-Repair closed loop ultimately yields a high-quality data tuple $\mathcal{E} = \langle SG_{final}, I, \Pi \rangle$, providing robust data for fine-tuning embodied models.
           </p>
         </div>
       </div>
