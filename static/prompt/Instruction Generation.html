@@ -62,9 +62,10 @@
     pre {
       font-family: 'Courier New', Courier, monospace;
       font-size: 14px;
-      line-height: 1.6;
-      white-space: pre-wrap;
-      word-wrap: break-word;
+      line-height: 1.8;
+      white-space: pre;
+      word-wrap: normal;
+      overflow-x: auto;
       color: #212529;
       margin: 0;
     }
@@ -139,7 +140,7 @@ CoT Analysis:
 
 Step 1 (Locate Objects): Identified FruitBowl on DiningTable and target surface Bed in Bedroom.
 
-Step 2 (Plan Action): The robot can pick up the bowl and transport it across rooms to the bed's surface.
+Step 2 (Plan Action): The robot can pick up the bowl and transport it across rooms to the bed&#x27;s surface.
 
 Step 3 (Synthesize): Convert the physical movement into a specific, direct command.
 
@@ -217,9 +218,9 @@ CoT Analysis:
 
 Step 1 (Locate Objects): Spotted the Television situated on the CoffeeTable in the LivingRoom.
 
-Step 2 (Plan Action): This is a state-change task; the robot only needs to interact with the device's power toggle.
+Step 2 (Plan Action): This is a state-change task; the robot only needs to interact with the device&#x27;s power toggle.
 
-Step 3 (Synthesize): Use a functional verb ("Turn on") linked to the object's specific location.
+Step 3 (Synthesize): Use a functional verb (&quot;Turn on&quot;) linked to the object&#x27;s specific location.
 
 Instruction: Turn on the television that is placed on the coffee table.
 
@@ -301,7 +302,7 @@ Step 1 (Locate Objects): Identified Apple inside the Refrigerator and the target
 
 Step 2 (Plan Action): Retrieve the item from a closed container and transport it to a different social area.
 
-Step 3 (Synthesize): Use "Retrieve" to imply the extraction and movement of the object.
+Step 3 (Synthesize): Use &quot;Retrieve&quot; to imply the extraction and movement of the object.
 
 Instruction: Retrieve apple_1 from refrigerator_1 and place it on coffee_table_1.
 
@@ -340,7 +341,7 @@ CoT Analysis:
 
 Step 1 (Locate Objects): Found SalmonFillet in Refrigerator, Saucepan on Stove, and Plate on DiningTable.
 
-Step 2 (Plan Action): Create a sequential pipeline: Extract salmon -&gt; Place in saucepan -&gt; Change stove state to 'on' -&gt; Wait/Simulate cook -&gt; Move to plate -&gt; Final delivery.
+Step 2 (Plan Action): Create a sequential pipeline: Extract salmon -&gt; Place in saucepan -&gt; Change stove state to &#x27;on&#x27; -&gt; Wait/Simulate cook -&gt; Move to plate -&gt; Final delivery.
 
 Step 3 (Synthesize): String together multiple sub-tasks into a cohesive cooking and serving workflow.
 
@@ -533,13 +534,13 @@ Scene Graph:
 
 CoT Analysis:
 
-Step 1 (Locate Objects): User is "hungry" for "eggs". Found Egg in Refrigerator and Saucepan on Stove.
+Step 1 (Locate Objects): User is &quot;hungry&quot; for &quot;eggs&quot;. Found Egg in Refrigerator and Saucepan on Stove.
 
-Step 2 (Plan Action): Translate the abstract state "hungry" into the physical task of preparing the identified eggs using the available cooking tool.
+Step 2 (Plan Action): Translate the abstract state &quot;hungry&quot; into the physical task of preparing the identified eggs using the available cooking tool.
 
-Step 3 (Generalize): Generate an informal, human-like request that reflects the user's internal need rather than the robot's steps.
+Step 3 (Generalize): Generate an informal, human-like request that reflects the user&#x27;s internal need rather than the robot&#x27;s steps.
 
-Instruction: Hey robot, I'm hungry—make me some eggs.
+Instruction: Hey robot, I&#x27;m hungry—make me some eggs.
 
 
 === Scene 2 (Index: 3) ===
@@ -572,9 +573,9 @@ Scene Graph:
 
 CoT Analysis:
 
-Step 1 (Locate Objects): Need a "snack" for "TV watching". Found FruitBowl on the DiningTable as the most suitable shareable snack.
+Step 1 (Locate Objects): Need a &quot;snack&quot; for &quot;TV watching&quot;. Found FruitBowl on the DiningTable as the most suitable shareable snack.
 
-Step 2 (Plan Action): Identify the family's location (LivingRoom Sofa) and plan the delivery of the fruit bowl to that specific social context.
+Step 2 (Plan Action): Identify the family&#x27;s location (LivingRoom Sofa) and plan the delivery of the fruit bowl to that specific social context.
 
 Step 3 (Generalize): Frame the instruction around the purpose (family enjoyment) rather than just the movement.
 
@@ -611,13 +612,13 @@ Scene Graph:
 
 CoT Analysis:
 
-Step 1 (Locate Objects): User is "thirsty". Found Milk in Refrigerator and Cup on DiningTable.
+Step 1 (Locate Objects): User is &quot;thirsty&quot;. Found Milk in Refrigerator and Cup on DiningTable.
 
-Step 2 (Plan Action): Combine the drink and the vessel, then deliver to the requested "couch" (Sofa) in the LivingRoom.
+Step 2 (Plan Action): Combine the drink and the vessel, then deliver to the requested &quot;couch&quot; (Sofa) in the LivingRoom.
 
-Step 3 (Generalize): Use a conversational tone that includes the user's context ("after work").
+Step 3 (Generalize): Use a conversational tone that includes the user&#x27;s context (&quot;after work&quot;).
 
-Instruction: I'm thirsty after work, can you bring me a glass of milk to the couch?
+Instruction: I&#x27;m thirsty after work, can you bring me a glass of milk to the couch?
 
 
 === Scene 8 (Index: 9) ===
@@ -652,7 +653,7 @@ Scene Graph:
 
 CoT Analysis:
 
-Step 1 (Locate Objects): Requirement for a "healthy snack" for "yoga". FruitBowl (DiningTable) is the healthiest option compared to other items.
+Step 1 (Locate Objects): Requirement for a &quot;healthy snack&quot; for &quot;yoga&quot;. FruitBowl (DiningTable) is the healthiest option compared to other items.
 
 Step 2 (Plan Action): Match the healthy item to the wellness activity area (LivingRoom where the yoga break is occurring).
 
@@ -693,13 +694,13 @@ Scene Graph:
 
 CoT Analysis:
 
-Step 1 (Locate Objects): Requirement for "cozy", "light", and "nice smell". Identified TableLamp (Bedroom Dresser) and PerfumeBottle (Dresser).
+Step 1 (Locate Objects): Requirement for &quot;cozy&quot;, &quot;light&quot;, and &quot;nice smell&quot;. Identified TableLamp (Bedroom Dresser) and PerfumeBottle (Dresser).
 
-Step 2 (Plan Action): To fulfill "cozy", the robot should turn on the lamp and bring/use the perfume to create the desired atmosphere for the user's design work.
+Step 2 (Plan Action): To fulfill &quot;cozy&quot;, the robot should turn on the lamp and bring/use the perfume to create the desired atmosphere for the user&#x27;s design work.
 
 Step 3 (Generalize): Convert the desired atmosphere into an actionable request for environmental modification.
 
-Instruction: I'm staying up late to design, make the room cozy with some light and a nice smell.
+Instruction: I&#x27;m staying up late to design, make the room cozy with some light and a nice smell.
 
 ---
 
@@ -714,12 +715,12 @@ The instructions must be solvable by a Planner (PDDL or TAMP). This means the in
 ### ROBOT CONSTRAINT (CRITICAL)
 **The robot is a single-arm robot that can only manipulate ONE object at a time.**
 - ❌ **FORBIDDEN:** Instructions that require manipulating multiple objects simultaneously
-  - Bad: "Bring the wine bottle and potato to the table"
-  - Bad: "Move the apple and bowl together"
+  - Bad: &quot;Bring the wine bottle and potato to the table&quot;
+  - Bad: &quot;Move the apple and bowl together&quot;
 - ✅ **ALLOWED:** Instructions that manipulate one object at a time (even in multi-step tasks)
-  - Good: "Bring the wine bottle to the table, then get the potato"
-  - Good: "Move the apple to the table" (single object)
-  - Good: "First bring the book, then bring the pen" (sequential, one at a time)
+  - Good: &quot;Bring the wine bottle to the table, then get the potato&quot;
+  - Good: &quot;Move the apple to the table&quot; (single object)
+  - Good: &quot;First bring the book, then bring the pen&quot; (sequential, one at a time)
 
 ### DIFFICULTY CATEGORIES
 
@@ -748,7 +749,7 @@ You must generate instructions in THREE difficulty categories:
 - Step 1: Location + Action + Object
 - Step 2: Action + Object (may depend on step 1)
 - Step 3: Final action combining previous steps
-- Uses: "First...", "then...", "finally..." or "First...", "next...", "lastly..."
+- Uses: &quot;First...&quot;, &quot;then...&quot;, &quot;finally...&quot; or &quot;First...&quot;, &quot;next...&quot;, &quot;lastly...&quot;
 - Note: Use English names for both instruction text and target_objects/target_locations
 
 #### 3. VAGUE/AMBIGUOUS
@@ -760,10 +761,10 @@ You must generate instructions in THREE difficulty categories:
 - May involve environmental conditions
 
 **Pattern:**
-- User need/state: "I...", "I'm...", "I want..."
-- Environmental condition: "too...", "It's too..."
-- Request: "Help me...", "Can you..."
-- Goal-oriented: "I want to...", "I need to..."
+- User need/state: &quot;I...&quot;, &quot;I&#x27;m...&quot;, &quot;I want...&quot;
+- Environmental condition: &quot;too...&quot;, &quot;It&#x27;s too...&quot;
+- Request: &quot;Help me...&quot;, &quot;Can you...&quot;
+- Goal-oriented: &quot;I want to...&quot;, &quot;I need to...&quot;
 - Note: Use English for instruction text and English object names in target_objects
 
 ### INSTRUCTION GENERATION GUIDELINES
@@ -779,11 +780,11 @@ For each scene, generate:
 
 1. **Sentence Structure Variety** (MANDATORY):
    - Use at least 3 different sentence structures across all instructions:
-     * **Imperative (Command)**: "Put the apple on the table"
-     * **Interrogative (Question)**: "Can you put the apple on the table?"
-     * **Request (Polite)**: "Please put the apple on the table"
-     * **Declarative (Statement)**: "I need the apple on the table"
-     * **Conditional**: "If possible, put the apple on the table"
+     * **Imperative (Command)**: &quot;Put the apple on the table&quot;
+     * **Interrogative (Question)**: &quot;Can you put the apple on the table?&quot;
+     * **Request (Polite)**: &quot;Please put the apple on the table&quot;
+     * **Declarative (Statement)**: &quot;I need the apple on the table&quot;
+     * **Conditional**: &quot;If possible, put the apple on the table&quot;
    - Distribute different structures evenly across difficulty categories
    - DO NOT use the same sentence structure for all instructions
 
@@ -799,19 +800,19 @@ For each scene, generate:
 
 3. **Avoid Unnecessary Modifiers**:
    - DO NOT use adjectives/adverbs unless absolutely necessary
-   - ❌ **BAD**: "carefully put", "gently place", "quickly move", "slowly transfer"
-   - ✅ **GOOD**: "put", "place", "move", "transfer"
-   - **Exception**: Vague instructions may need modifiers when describing goals (e.g., "warm water", "clean plate")
+   - ❌ **BAD**: &quot;carefully put&quot;, &quot;gently place&quot;, &quot;quickly move&quot;, &quot;slowly transfer&quot;
+   - ✅ **GOOD**: &quot;put&quot;, &quot;place&quot;, &quot;move&quot;, &quot;transfer&quot;
+   - **Exception**: Vague instructions may need modifiers when describing goals (e.g., &quot;warm water&quot;, &quot;clean plate&quot;)
    - Keep instructions concise and direct
 
 4. **Alternative Descriptions**:
    - For similar operations, generate different phrasings
-   - Example variations for "move object to location":
-     * "Put the apple on the table"
-     * "Move the apple to the table"
-     * "Place the apple onto the table"
-     * "Set the apple down on the table"
-     * "Slide the apple to the table"
+   - Example variations for &quot;move object to location&quot;:
+     * &quot;Put the apple on the table&quot;
+     * &quot;Move the apple to the table&quot;
+     * &quot;Place the apple onto the table&quot;
+     * &quot;Set the apple down on the table&quot;
+     * &quot;Slide the apple to the table&quot;
    - Ensure each instruction has a unique phrasing, even if describing similar actions
 
 5. **Object and Location Rotation**:
@@ -822,10 +823,10 @@ For each scene, generate:
 
 6. **Contextual Scenarios (Personas)**:
    - Imagine different users to drive semantic diversity:
-     * **The Cleaner:** Focuses on tidying, putting things away, washing. ("Tidy up the desk.")
-     * **The Relaxer:** Focuses on comfort, lights, entertainment. ("I want to watch a movie.")
-     * **The Worker:** Focuses on laptops, books, coffee. ("Set up my workstation.")
-     * **The Cook:** Focuses on fridge, ingredients, dishes. ("Get the ingredients ready.")
+     * **The Cleaner:** Focuses on tidying, putting things away, washing. (&quot;Tidy up the desk.&quot;)
+     * **The Relaxer:** Focuses on comfort, lights, entertainment. (&quot;I want to watch a movie.&quot;)
+     * **The Worker:** Focuses on laptops, books, coffee. (&quot;Set up my workstation.&quot;)
+     * **The Cook:** Focuses on fridge, ingredients, dishes. (&quot;Get the ingredients ready.&quot;)
    - Do NOT explicitly state the persona, but write the instruction *as if* you are that person.
 
 ### HANDLING INTERACTION &amp; STATES (CRITICAL)
@@ -837,22 +838,22 @@ Assume the user wants to change the state, regardless of the current state.
 **1. Switchable Objects (Electronics, Lamps, Appliances)**
    - *Target Objects:* TV, Television, Lamp, Laptop, Computer, Kettle, AirPurifier, SmartSpeaker.
    - *Allowed Verbs:* Turn on, Turn off, Switch on, Power up.
-   - *Example:* If you see "TableLamp", generate: "Turn on the table lamp."
+   - *Example:* If you see &quot;TableLamp&quot;, generate: &quot;Turn on the table lamp.&quot;
 
 **2. Openable Objects (Storage, Large Appliances)**
    - *Target Objects:* Fridge, Refrigerator, Microwave, Oven, WashingMachine, Cabinet, Drawer, Laptop (lid), Book.
    - *Allowed Verbs:* Open, Close.
-   - *Example:* If you see "Fridge", generate: "Open the fridge" or "Close the fridge."
+   - *Example:* If you see &quot;Fridge&quot;, generate: &quot;Open the fridge&quot; or &quot;Close the fridge.&quot;
 
 **3. Cleaning Interactions**
    - *Target Objects:* Mug, Plate, Bowl, Glass, Fork, Spoon, Knife, Clothes, Towel.
    - *Allowed Verbs:* Wash, Clean, Rinse, Dry, Load (into dishwasher).
-   - *Example:* If you see "Mug" and "Sink", generate: "Wash the mug in the sink."
+   - *Example:* If you see &quot;Mug&quot; and &quot;Sink&quot;, generate: &quot;Wash the mug in the sink.&quot;
 
 **4. Usage Interactions**
    - *Target Objects:* Bed (Make/Sleep), Chair (Sit), Plant (Water), TrashCan (Empty).
    - *Allowed Verbs:* Water (the plant), Empty (the bin), Make (the bed).
-   - *Example:* If you see "PottedPlant", generate: "Water the potted plant."
+   - *Example:* If you see &quot;PottedPlant&quot;, generate: &quot;Water the potted plant.&quot;
 
 **RULE:** Do NOT hesitate to generate these commands just because the state is missing.
 
@@ -885,10 +886,10 @@ Before generating each instruction, follow this Chain of Thought process to thin
    - For Simple/Complex: Convert the plan into a specific, direct command
    - For Vague: Generalize the goal into a natural, human-like request
    - Use natural language that sounds like what a real person would say
-   - Consider context and user intent (e.g., "I'm hungry" → prepare food)
+   - Consider context and user intent (e.g., &quot;I&#x27;m hungry&quot; → prepare food)
 
 **Generate instructions by difficulty:**
-   - **Simple**: Pick one object, move to one location OR perform a single state change (e.g., "Open the fridge", "Turn on the lamp")
+   - **Simple**: Pick one object, move to one location OR perform a single state change (e.g., &quot;Open the fridge&quot;, &quot;Turn on the lamp&quot;)
    - **Complex**: Chain multiple operations (3+ steps) combining navigation/transport with interaction/state changes
    - **Vague**: Express needs/goals without explicit objects, requiring inference
 
@@ -898,51 +899,51 @@ You must return a JSON object with this structure:
 
 ```json
 {
-  "scene_id": 0,
-  "instructions": {
-    "simple": [
+  &quot;scene_id&quot;: 0,
+  &quot;instructions&quot;: {
+    &quot;simple&quot;: [
       {
-        "cot_analysis": {
-          "step1_locate_objects": "Identified CellPhone in the scene and target location Bed.",
-          "step2_plan_action": "The robot can pick up the phone and place it on the bed surface.",
-          "step3_synthesize": "Convert the physical movement into a specific, direct command."
+        &quot;cot_analysis&quot;: {
+          &quot;step1_locate_objects&quot;: &quot;Identified CellPhone in the scene and target location Bed.&quot;,
+          &quot;step2_plan_action&quot;: &quot;The robot can pick up the phone and place it on the bed surface.&quot;,
+          &quot;step3_synthesize&quot;: &quot;Convert the physical movement into a specific, direct command.&quot;
         },
-        "target_objects": ["CellPhone"],
-        "target_locations": ["Bed"],
-        "instruction": "Put the phone on the bed",
-        "difficulty": "simple",
-        "steps": 1,
-        "description": "Single-step operation: move phone to bed"
+        &quot;target_objects&quot;: [&quot;CellPhone&quot;],
+        &quot;target_locations&quot;: [&quot;Bed&quot;],
+        &quot;instruction&quot;: &quot;Put the phone on the bed&quot;,
+        &quot;difficulty&quot;: &quot;simple&quot;,
+        &quot;steps&quot;: 1,
+        &quot;description&quot;: &quot;Single-step operation: move phone to bed&quot;
       }
     ],
-    "complex": [
+    &quot;complex&quot;: [
       {
-        "cot_analysis": {
-          "step1_locate_objects": "Found Apple in Kitchen and Plate in Kitchen. Target location is DiningTable in LivingRoom.",
-          "step2_plan_action": "Create a sequential pipeline: Wash apple in kitchen -&gt; Get plate -&gt; Transport both to dining table.",
-          "step3_synthesize": "String together multiple sub-tasks into a cohesive workflow with clear sequence markers."
+        &quot;cot_analysis&quot;: {
+          &quot;step1_locate_objects&quot;: &quot;Found Apple in Kitchen and Plate in Kitchen. Target location is DiningTable in LivingRoom.&quot;,
+          &quot;step2_plan_action&quot;: &quot;Create a sequential pipeline: Wash apple in kitchen -&gt; Get plate -&gt; Transport both to dining table.&quot;,
+          &quot;step3_synthesize&quot;: &quot;String together multiple sub-tasks into a cohesive workflow with clear sequence markers.&quot;
         },
-        "target_objects": ["Apple", "Plate"],
-        "target_locations": ["Kitchen", "LivingRoom", "DiningTable"],
-        "instruction": "First go to the kitchen and wash an apple, then get a plate, finally bring them together to the living room table",
-        "difficulty": "complex",
-        "steps": 3,
-        "description": "Multi-step: wash apple, get plate, bring both to table"
+        &quot;target_objects&quot;: [&quot;Apple&quot;, &quot;Plate&quot;],
+        &quot;target_locations&quot;: [&quot;Kitchen&quot;, &quot;LivingRoom&quot;, &quot;DiningTable&quot;],
+        &quot;instruction&quot;: &quot;First go to the kitchen and wash an apple, then get a plate, finally bring them together to the living room table&quot;,
+        &quot;difficulty&quot;: &quot;complex&quot;,
+        &quot;steps&quot;: 3,
+        &quot;description&quot;: &quot;Multi-step: wash apple, get plate, bring both to table&quot;
       }
     ],
-    "vague": [
+    &quot;vague&quot;: [
       {
-        "cot_analysis": {
-          "step1_locate_objects": "User needs 'warm water'. Found Kettle and Cup in Kitchen. Water source implied (sink/faucet).",
-          "step2_plan_action": "Translate the abstract goal into physical actions: Fill kettle -&gt; Heat water -&gt; Pour into cup.",
-          "step3_generalize": "Generate an informal, human-like request that reflects the user's need rather than explicit robot steps."
+        &quot;cot_analysis&quot;: {
+          &quot;step1_locate_objects&quot;: &quot;User needs &#x27;warm water&#x27;. Found Kettle and Cup in Kitchen. Water source implied (sink/faucet).&quot;,
+          &quot;step2_plan_action&quot;: &quot;Translate the abstract goal into physical actions: Fill kettle -&gt; Heat water -&gt; Pour into cup.&quot;,
+          &quot;step3_generalize&quot;: &quot;Generate an informal, human-like request that reflects the user&#x27;s need rather than explicit robot steps.&quot;
         },
-        "target_objects": ["Cup", "Kettle"],
-        "target_locations": ["Kitchen"],
-        "instruction": "Help me prepare a cup of warm water",
-        "difficulty": "vague",
-        "steps": null,
-        "description": "Goal-oriented: prepare warm water (requires inference)"
+        &quot;target_objects&quot;: [&quot;Cup&quot;, &quot;Kettle&quot;],
+        &quot;target_locations&quot;: [&quot;Kitchen&quot;],
+        &quot;instruction&quot;: &quot;Help me prepare a cup of warm water&quot;,
+        &quot;difficulty&quot;: &quot;vague&quot;,
+        &quot;steps&quot;: null,
+        &quot;description&quot;: &quot;Goal-oriented: prepare warm water (requires inference)&quot;
       }
     ]
   }
@@ -958,7 +959,7 @@ For each instruction you generate, you MUST include a `cot_analysis` field with 
 ### IMPORTANT NOTES
 
 1. **ALL TEXT MUST BE IN ENGLISH** - Both instruction text and target_objects/target_locations must use English
-2. **Object names must match scene exactly** - Use the EXACT English object names from the scene description (e.g., "Apple", "CellPhone", "Bed", "Kitchen")
+2. **Object names must match scene exactly** - Use the EXACT English object names from the scene description (e.g., &quot;Apple&quot;, &quot;CellPhone&quot;, &quot;Bed&quot;, &quot;Kitchen&quot;)
 3. **All instructions must be solvable** - Only use objects and locations that exist in the scene
 4. **Natural language** - Instructions should sound like what a real person would say in English
 5. **Diversity is CRITICAL** - Each instruction must be unique in:
@@ -970,9 +971,9 @@ For each instruction you generate, you MUST include a `cot_analysis` field with 
 
 ### CRITICAL: Language Requirements
 
-- **Instruction text**: MUST be in English (e.g., "Put the apple on the table")
-- **target_objects**: Use EXACT English names from scene (e.g., ["Apple"])
-- **target_locations**: Use EXACT English names from scene (e.g., ["DiningTable"])
+- **Instruction text**: MUST be in English (e.g., &quot;Put the apple on the table&quot;)
+- **target_objects**: Use EXACT English names from scene (e.g., [&quot;Apple&quot;])
+- **target_locations**: Use EXACT English names from scene (e.g., [&quot;DiningTable&quot;])
 
 **NO CHINESE CHARACTERS ALLOWED** - All instructions, descriptions, and object names must be in English.
 

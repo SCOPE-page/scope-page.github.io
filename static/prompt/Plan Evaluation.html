@@ -62,9 +62,10 @@
     pre {
       font-family: 'Courier New', Courier, monospace;
       font-size: 14px;
-      line-height: 1.6;
-      white-space: pre-wrap;
-      word-wrap: break-word;
+      line-height: 1.8;
+      white-space: pre;
+      word-wrap: normal;
+      overflow-x: auto;
       color: #212529;
       margin: 0;
     }
@@ -105,8 +106,8 @@
 # Lines before line 340 are few-shot examples for filling.
 # The template looking of prompt starts at line 340.
 
-**EXAMPLE 1: The "Missing Logic" Case**
-**Instruction**: "Wash the coffee mug in the bathroom sink."
+**EXAMPLE 1: The &quot;Missing Logic&quot; Case**
+**Instruction**: &quot;Wash the coffee mug in the bathroom sink.&quot;
 **PART 1 Actions**: 
 1. navigate(kitchen, desk)
 2. pick(mug)
@@ -117,7 +118,7 @@
 
 **Evaluation Reasoning**:
 1. **Relevance**: The actions are relevant (moving mug to sink).
-2. **Goal Check**: The mug is in the sink. But is it "washed"?
+2. **Goal Check**: The mug is in the sink. But is it &quot;washed&quot;?
    - *Logic Audit*: The instruction implies using water. The plan opens soap but **NEVER turns on the faucet** (`toggle_on(faucet)`). 
    - *Verdict*: The object is in place, but the process is logically incomplete.
 3. **Scoring**: It cannot be a 4 (Perfect) because the water is missing. It is better than a 2 (Failed) because the mug is successfully in the sink. 
@@ -125,17 +126,17 @@
 
 **Output**:
 {
-    "summary": "Moved mug to sink and opened soap.",
-    "execution_analysis": "Technically executable, but logically incomplete. Missing water flow.",
-    "evaluate": "The robot placed the mug in the sink but failed to turn on the water faucet. 'Washing' requires water. Therefore, strictly not a perfect execution.",
-    "score": 3,
-    "success_boolean": true
+    &quot;summary&quot;: &quot;Moved mug to sink and opened soap.&quot;,
+    &quot;execution_analysis&quot;: &quot;Technically executable, but logically incomplete. Missing water flow.&quot;,
+    &quot;evaluate&quot;: &quot;The robot placed the mug in the sink but failed to turn on the water faucet. &#x27;Washing&#x27; requires water. Therefore, strictly not a perfect execution.&quot;,
+    &quot;score&quot;: 3,
+    &quot;success_boolean&quot;: true
 }
 
 --------------------------------------------------
 
-**EXAMPLE 2: The "Implicit Device" Case**
-**Instruction**: "Heat the apple slice in the microwave."
+**EXAMPLE 2: The &quot;Implicit Device&quot; Case**
+**Instruction**: &quot;Heat the apple slice in the microwave.&quot;
 **PART 1 Actions**: 
 1. pick(apple_slice)
 2. navigate(microwave)
@@ -146,7 +147,7 @@
 
 **Evaluation Reasoning**:
 1. **Relevance**: Relevant.
-2. **Goal Check**: Apple is inside, door is closed. Is it "heating"?
+2. **Goal Check**: Apple is inside, door is closed. Is it &quot;heating&quot;?
    - *Logic Audit*: The device was never turned on (`toggle_on(microwave)`). Closing the door is not enough to heat food.
    - *Verdict*: Task partially done but functionally failed at the last logical step.
 3. **Scoring**: Missing a critical implicit step. 
@@ -154,17 +155,17 @@
 
 **Output**:
 {
-    "summary": "Placed apple in microwave and closed door.",
-    "execution_analysis": "Failed to activate the device.",
-    "evaluate": "The robot loaded the microwave correctly but forgot to turn it on. The instruction 'heat' requires activation. Score capped at 3.",
-    "score": 3,
-    "success_boolean": true
+    &quot;summary&quot;: &quot;Placed apple in microwave and closed door.&quot;,
+    &quot;execution_analysis&quot;: &quot;Failed to activate the device.&quot;,
+    &quot;evaluate&quot;: &quot;The robot loaded the microwave correctly but forgot to turn it on. The instruction &#x27;heat&#x27; requires activation. Score capped at 3.&quot;,
+    &quot;score&quot;: 3,
+    &quot;success_boolean&quot;: true
 }
 
 --------------------------------------------------
 
-**EXAMPLE 3: The "Perfect Execution" Case**
-**Instruction**: "Throw away the apple."
+**EXAMPLE 3: The &quot;Perfect Execution&quot; Case**
+**Instruction**: &quot;Throw away the apple.&quot;
 **PART 1 Actions**: 
 1. navigate(table)
 2. pick(apple)
@@ -182,17 +183,17 @@
 
 **Output**:
 {
-    "summary": "Picked apple and placed in trash.",
-    "execution_analysis": "Efficient and complete.",
-    "evaluate": "Plan follows the shortest logical path. Goal achieved perfectly.",
-    "score": 4,
-    "success_boolean": true
+    &quot;summary&quot;: &quot;Picked apple and placed in trash.&quot;,
+    &quot;execution_analysis&quot;: &quot;Efficient and complete.&quot;,
+    &quot;evaluate&quot;: &quot;Plan follows the shortest logical path. Goal achieved perfectly.&quot;,
+    &quot;score&quot;: 4,
+    &quot;success_boolean&quot;: true
 }
 
 --------------------------------------------------
 
-**EXAMPLE 4: The "Simulation Crash after Success" Case**
-**Instruction**: "Put the book on the bed."
+**EXAMPLE 4: The &quot;Simulation Crash after Success&quot; Case**
+**Instruction**: &quot;Put the book on the bed.&quot;
 **PART 1 Actions**: 
 1. pick(book)
 2. navigate(bed)
@@ -206,16 +207,16 @@
 3. **Scoring**: 
    - Simulation failed, so cannot be 4.
    - But the failure happened *after* the goal was met (during exit navigation).
-   - Apply "Merciful 3" Rule.
+   - Apply &quot;Merciful 3&quot; Rule.
    - *Result*: **Score 3 (Crash Landing)**.
 
 **Output**:
 {
-    "summary": "Placed book on bed, then crashed.",
-    "execution_analysis": "Goal achieved, but simulation failed during exit.",
-    "evaluate": "The core task (book on bed) was completed successfully at step 3. The crash at step 4 is a flaw, preventing a perfect score, but it counts as a success.",
-    "score": 3,
-    "success_boolean": true
+    &quot;summary&quot;: &quot;Placed book on bed, then crashed.&quot;,
+    &quot;execution_analysis&quot;: &quot;Goal achieved, but simulation failed during exit.&quot;,
+    &quot;evaluate&quot;: &quot;The core task (book on bed) was completed successfully at step 3. The crash at step 4 is a flaw, preventing a perfect score, but it counts as a success.&quot;,
+    &quot;score&quot;: 3,
+    &quot;success_boolean&quot;: true
 }
 
 ---
@@ -235,30 +236,30 @@ Your job is to judge the robot based **ONLY on PART 1: The Effective Trace** (ac
 
 **2. BRANCHING POINT: Did the robot finish the job?**
 - Did the actions in PART 1 *fully achieve* the final goal state of the instruction?
-- Check if the Instruction's goal is completely satisfied by PART 1 actions.
+- Check if the Instruction&#x27;s goal is completely satisfied by PART 1 actions.
 
 **--- BRANCH A: NO (Task Incomplete) ---**
 - The simulation failed or stopped before the goal was reached.
 - **CRITICAL: Check if PART 1 contains ONLY navigation actions (no object interaction)**
   - **If PART 1 has ONLY navigate actions** (no pick, place, open, close, fill, pour, etc.) -&gt; **SCORE 0** (Navigation Only - No Actual Work Done).
-  - *Example: Instruction "Water the plants". Robot: navigate(agent, room1, room2) -&gt; FAILED. This is just walking, no interaction -&gt; Score 0.*
+  - *Example: Instruction &quot;Water the plants&quot;. Robot: navigate(agent, room1, room2) -&gt; FAILED. This is just walking, no interaction -&gt; Score 0.*
 - Calculate the Semantic Progress of PART 1 (only if there WAS actual interaction):
     - **If &lt; 50% progress** (e.g., picked item but failed to place) -&gt; **SCORE 1** (Early Failure / Poor Execution).
     - **If ≥ 50% progress** (e.g., picked item, sliced bread, but failed to place) -&gt; **SCORE 2** (Partial Completion / Late Failure).
-- *Example: Instruction "Slice bread and place on plate". Robot picked up knife and bread (Success) but failed to slice. This is &gt;50% progress -&gt; Score 2.*
+- *Example: Instruction &quot;Slice bread and place on plate&quot;. Robot picked up knife and bread (Success) but failed to slice. This is &gt;50% progress -&gt; Score 2.*
 
 **--- BRANCH B: YES (Task Complete) ---**
 - The robot successfully achieved the goal. Now perform a **Logic Audit**:
   - **Logic Audit**: Check if the instruction implies any implicit steps that are missing.
-    - *Examples*: "Wash" requires water flow (toggle_on faucet). "Heat" requires device activation (toggle_on microwave). "Cook" requires turning on stove.
+    - *Examples*: &quot;Wash&quot; requires water flow (toggle_on faucet). &quot;Heat&quot; requires device activation (toggle_on microwave). &quot;Cook&quot; requires turning on stove.
     - If implicit steps are missing -&gt; **SCORE 3** (Logic Gap / Flawed Success).
     - If all implicit steps are present -&gt; Continue to Efficiency Check.
 - **Efficiency Check** (only if Logic Audit passes):
     - **If Efficient** (No redundant steps, optimal path, logical sequence) -&gt; **SCORE 4** (Perfect Execution).
     - **If Inefficient** (Redundant steps, backtracking, unnecessary actions, but goal achieved) -&gt; **SCORE 3** (Suboptimal Success).
-- *Example: Instruction "Get apple from fridge". Robot: open_fridge -&gt; pick_apple -&gt; close_fridge -&gt; navigate -&gt; place_on_table. This is efficient -&gt; Score 4.*
-- *Example: Instruction "Get apple from fridge". Robot: open_fridge -&gt; close_fridge -&gt; open_fridge -&gt; pick_apple -&gt; navigate -&gt; place_on_table. This has redundant open/close -&gt; Score 3.*
-- *Example: Instruction "Wash mug". Robot: place_in(mug, sink) -&gt; open(soap). Missing toggle_on(faucet) -&gt; Score 3 (Logic Gap).*
+- *Example: Instruction &quot;Get apple from fridge&quot;. Robot: open_fridge -&gt; pick_apple -&gt; close_fridge -&gt; navigate -&gt; place_on_table. This is efficient -&gt; Score 4.*
+- *Example: Instruction &quot;Get apple from fridge&quot;. Robot: open_fridge -&gt; close_fridge -&gt; open_fridge -&gt; pick_apple -&gt; navigate -&gt; place_on_table. This has redundant open/close -&gt; Score 3.*
+- *Example: Instruction &quot;Wash mug&quot;. Robot: place_in(mug, sink) -&gt; open(soap). Missing toggle_on(faucet) -&gt; Score 3 (Logic Gap).*
 
 ### SCORING RUBRIC SUMMARY (0-4)
 
@@ -266,11 +267,11 @@ Your job is to judge the robot based **ONLY on PART 1: The Effective Trace** (ac
 - PART 1 is empty or contains actions completely irrelevant to the Instruction.
 - **OR**: PART 1 contains ONLY navigation actions (navigate) with NO actual object interaction (no pick, place, open, close, fill, pour, etc.).
 - The robot did nothing meaningful or wasted time on unrelated tasks.
-- *Example: "Water the plants" but robot only navigated to balcony and failed. No interaction with watering can or plants -&gt; Score 0.*
+- *Example: &quot;Water the plants&quot; but robot only navigated to balcony and failed. No interaction with watering can or plants -&gt; Score 0.*
 
 **1 (Early Failure / Poor Execution)**
 - PART 1 contains relevant actions WITH actual object interaction (not just navigation) but covers &lt; 50% of necessary steps.
-- The robot showed understanding and attempted interaction but failed early (e.g., picked up item but couldn't place it).
+- The robot showed understanding and attempted interaction but failed early (e.g., picked up item but couldn&#x27;t place it).
 - **Note**: If PART 1 has ONLY navigation, use Score 0 instead.
 
 **2 (Partial Completion / Late Failure)**
@@ -280,7 +281,7 @@ Your job is to judge the robot based **ONLY on PART 1: The Effective Trace** (ac
 **3 (Suboptimal Success / Flawed Success)**
 - PART 1 fully achieves the goal, but with inefficient or redundant steps.
 - **OR**: PART 1 achieves the goal but is **logically incomplete** (missing implicit steps like turning on water/device).
-- **OR**: Simulation crashed AFTER the goal was achieved ("Crash Landing").
+- **OR**: Simulation crashed AFTER the goal was achieved (&quot;Crash Landing&quot;).
 - Task completed, but could be done better (e.g., unnecessary backtracking, redundant actions, missing logical steps).
 
 **4 (Perfect Execution)**
@@ -288,12 +289,12 @@ Your job is to judge the robot based **ONLY on PART 1: The Effective Trace** (ac
 - Completeness: Covers all instruction requirements AND all implicit logical steps.
 - Correctness: Action order conforms to logical preconditions.
 - Efficiency: No redundant steps, optimal path.
-- **Logic Audit**: All implicit steps are present (e.g., water is turned on for "wash", device is activated for "heat").
+- **Logic Audit**: All implicit steps are present (e.g., water is turned on for &quot;wash&quot;, device is activated for &quot;heat&quot;).
 
 ### 🧠 FEW-SHOT EXAMPLES WITH REASONING (Study these carefully)
 
-**EXAMPLE 1: The "Missing Logic" Case**
-**Instruction**: "Wash the coffee mug in the bathroom sink."
+**EXAMPLE 1: The &quot;Missing Logic&quot; Case**
+**Instruction**: &quot;Wash the coffee mug in the bathroom sink.&quot;
 **PART 1 Actions**: 
 1. navigate(kitchen, desk)
 2. pick(mug)
@@ -304,7 +305,7 @@ Your job is to judge the robot based **ONLY on PART 1: The Effective Trace** (ac
 
 **Evaluation Reasoning**:
 1. **Relevance**: The actions are relevant (moving mug to sink).
-2. **Goal Check**: The mug is in the sink. But is it "washed"?
+2. **Goal Check**: The mug is in the sink. But is it &quot;washed&quot;?
    - *Logic Audit*: The instruction implies using water. The plan opens soap but **NEVER turns on the faucet** (`toggle_on(faucet)`). 
    - *Verdict*: The object is in place, but the process is logically incomplete.
 3. **Scoring**: It cannot be a 4 (Perfect) because the water is missing. It is better than a 2 (Failed) because the mug is successfully in the sink. 
@@ -312,17 +313,17 @@ Your job is to judge the robot based **ONLY on PART 1: The Effective Trace** (ac
 
 **Output**:
 {{
-    "summary": "Moved mug to sink and opened soap.",
-    "execution_analysis": "Technically executable, but logically incomplete. Missing water flow.",
-    "evaluate": "The robot placed the mug in the sink but failed to turn on the water faucet. 'Washing' requires water. Therefore, strictly not a perfect execution.",
-    "score": 3,
-    "success_boolean": true
+    &quot;summary&quot;: &quot;Moved mug to sink and opened soap.&quot;,
+    &quot;execution_analysis&quot;: &quot;Technically executable, but logically incomplete. Missing water flow.&quot;,
+    &quot;evaluate&quot;: &quot;The robot placed the mug in the sink but failed to turn on the water faucet. &#x27;Washing&#x27; requires water. Therefore, strictly not a perfect execution.&quot;,
+    &quot;score&quot;: 3,
+    &quot;success_boolean&quot;: true
 }}
 
 --------------------------------------------------
 
-**EXAMPLE 2: The "Implicit Device" Case**
-**Instruction**: "Heat the apple slice in the microwave."
+**EXAMPLE 2: The &quot;Implicit Device&quot; Case**
+**Instruction**: &quot;Heat the apple slice in the microwave.&quot;
 **PART 1 Actions**: 
 1. pick(apple_slice)
 2. navigate(microwave)
@@ -333,7 +334,7 @@ Your job is to judge the robot based **ONLY on PART 1: The Effective Trace** (ac
 
 **Evaluation Reasoning**:
 1. **Relevance**: Relevant.
-2. **Goal Check**: Apple is inside, door is closed. Is it "heating"?
+2. **Goal Check**: Apple is inside, door is closed. Is it &quot;heating&quot;?
    - *Logic Audit*: The device was never turned on (`toggle_on(microwave)`). Closing the door is not enough to heat food.
    - *Verdict*: Task partially done but functionally failed at the last logical step.
 3. **Scoring**: Missing a critical implicit step. 
@@ -341,17 +342,17 @@ Your job is to judge the robot based **ONLY on PART 1: The Effective Trace** (ac
 
 **Output**:
 {{
-    "summary": "Placed apple in microwave and closed door.",
-    "execution_analysis": "Failed to activate the device.",
-    "evaluate": "The robot loaded the microwave correctly but forgot to turn it on. The instruction 'heat' requires activation. Score capped at 3.",
-    "score": 3,
-    "success_boolean": true
+    &quot;summary&quot;: &quot;Placed apple in microwave and closed door.&quot;,
+    &quot;execution_analysis&quot;: &quot;Failed to activate the device.&quot;,
+    &quot;evaluate&quot;: &quot;The robot loaded the microwave correctly but forgot to turn it on. The instruction &#x27;heat&#x27; requires activation. Score capped at 3.&quot;,
+    &quot;score&quot;: 3,
+    &quot;success_boolean&quot;: true
 }}
 
 --------------------------------------------------
 
-**EXAMPLE 3: The "Perfect Execution" Case**
-**Instruction**: "Throw away the apple."
+**EXAMPLE 3: The &quot;Perfect Execution&quot; Case**
+**Instruction**: &quot;Throw away the apple.&quot;
 **PART 1 Actions**: 
 1. navigate(table)
 2. pick(apple)
@@ -369,17 +370,17 @@ Your job is to judge the robot based **ONLY on PART 1: The Effective Trace** (ac
 
 **Output**:
 {{
-    "summary": "Picked apple and placed in trash.",
-    "execution_analysis": "Efficient and complete.",
-    "evaluate": "Plan follows the shortest logical path. Goal achieved perfectly.",
-    "score": 4,
-    "success_boolean": true
+    &quot;summary&quot;: &quot;Picked apple and placed in trash.&quot;,
+    &quot;execution_analysis&quot;: &quot;Efficient and complete.&quot;,
+    &quot;evaluate&quot;: &quot;Plan follows the shortest logical path. Goal achieved perfectly.&quot;,
+    &quot;score&quot;: 4,
+    &quot;success_boolean&quot;: true
 }}
 
 --------------------------------------------------
 
-**EXAMPLE 4: The "Simulation Crash after Success" Case**
-**Instruction**: "Put the book on the bed."
+**EXAMPLE 4: The &quot;Simulation Crash after Success&quot; Case**
+**Instruction**: &quot;Put the book on the bed.&quot;
 **PART 1 Actions**: 
 1. pick(book)
 2. navigate(bed)
@@ -393,32 +394,32 @@ Your job is to judge the robot based **ONLY on PART 1: The Effective Trace** (ac
 3. **Scoring**: 
    - Simulation failed, so cannot be 4.
    - But the failure happened *after* the goal was met (during exit navigation).
-   - Apply "Merciful 3" Rule.
+   - Apply &quot;Merciful 3&quot; Rule.
    - *Result*: **Score 3 (Crash Landing)**.
 
 **Output**:
 {{
-    "summary": "Placed book on bed, then crashed.",
-    "execution_analysis": "Goal achieved, but simulation failed during exit.",
-    "evaluate": "The core task (book on bed) was completed successfully at step 3. The crash at step 4 is a flaw, preventing a perfect score, but it counts as a success.",
-    "score": 3,
-    "success_boolean": true
+    &quot;summary&quot;: &quot;Placed book on bed, then crashed.&quot;,
+    &quot;execution_analysis&quot;: &quot;Goal achieved, but simulation failed during exit.&quot;,
+    &quot;evaluate&quot;: &quot;The core task (book on bed) was completed successfully at step 3. The crash at step 4 is a flaw, preventing a perfect score, but it counts as a success.&quot;,
+    &quot;score&quot;: 3,
+    &quot;success_boolean&quot;: true
 }}
 
 ### CRITICAL RULES:
 - **Ignore PART 3 (Intended Actions).** They never happened. Do not give credit for them.
-- **Physical Failure Cap:** If the simulation status is ❌ (Failed), you are likely in BRANCH A. However, if the crash happened *after* the goal was fully achieved, apply "Merciful 3" Rule (see Example 4).
-- **Progress Calculation:** When in BRANCH A, assess semantic progress (how much of the task was accomplished), not just step count. For example, "pick up item" is a significant step even if it's only 1 out of 5 total steps.
-- **Logic Audit Required:** Always check for implicit steps when the goal appears "complete". Instructions like "wash", "heat", "cook", "turn on" require device activation or resource flow. Missing these = Score 3 (not 4).
+- **Physical Failure Cap:** If the simulation status is ❌ (Failed), you are likely in BRANCH A. However, if the crash happened *after* the goal was fully achieved, apply &quot;Merciful 3&quot; Rule (see Example 4).
+- **Progress Calculation:** When in BRANCH A, assess semantic progress (how much of the task was accomplished), not just step count. For example, &quot;pick up item&quot; is a significant step even if it&#x27;s only 1 out of 5 total steps.
+- **Logic Audit Required:** Always check for implicit steps when the goal appears &quot;complete&quot;. Instructions like &quot;wash&quot;, &quot;heat&quot;, &quot;cook&quot;, &quot;turn on&quot; require device activation or resource flow. Missing these = Score 3 (not 4).
 - **Study the Examples:** The four examples above demonstrate critical reasoning patterns. Follow their logic when evaluating similar cases.
 
 Output Format (JSON):
 {
-    "summary": "Brief summary of what the robot actually did (PART 1)",
-    "execution_analysis": "Comment specifically on PART 1 actions and why they succeeded/failed",
-    "evaluate": "Detailed reasoning following the decision tree (which branch and why)",
-    "score": &lt;int 0-4&gt;,
-    "success_boolean": &lt;true if score &gt;= 3 else false&gt;
+    &quot;summary&quot;: &quot;Brief summary of what the robot actually did (PART 1)&quot;,
+    &quot;execution_analysis&quot;: &quot;Comment specifically on PART 1 actions and why they succeeded/failed&quot;,
+    &quot;evaluate&quot;: &quot;Detailed reasoning following the decision tree (which branch and why)&quot;,
+    &quot;score&quot;: &lt;int 0-4&gt;,
+    &quot;success_boolean&quot;: &lt;true if score &gt;= 3 else false&gt;
 }
 
 ---
@@ -436,7 +437,7 @@ Output Format (JSON):
 [REALITY CHECK - EXECUTION TRACE]
 The robot attempted to execute the plan. Here is what ACTUALLY happened:
 
-**PART 1: SUCCESSFULLY EXECUTED ACTIONS (The "Effective Trace")**
+**PART 1: SUCCESSFULLY EXECUTED ACTIONS (The &quot;Effective Trace&quot;)**
 {executed_actions}
 
 **PART 2: SIMULATION STATUS**
@@ -460,7 +461,7 @@ The robot attempted to execute the plan. Here is what ACTUALLY happened:
    - If irrelevant/random -&gt; Score 0 (Stop).
 
 2. **BRANCHING: Check Task Completion**
-   - Does PART 1 fully achieve the Instruction's goal?
+   - Does PART 1 fully achieve the Instruction&#x27;s goal?
    
    **If NO (Incomplete) -&gt; BRANCH A:**
    - **FIRST**: Check if PART 1 has ONLY navigation actions (no interaction).
@@ -471,7 +472,7 @@ The robot attempted to execute the plan. Here is what ACTUALLY happened:
    
    **If YES (Complete) -&gt; BRANCH B:**
    - **CRITICAL: Perform Logic Audit FIRST**
-     - Check if the instruction implies implicit steps (e.g., "wash" needs water, "heat" needs device activation).
+     - Check if the instruction implies implicit steps (e.g., &quot;wash&quot; needs water, &quot;heat&quot; needs device activation).
      - Review PART 1 actions: Are all implicit steps present?
      - If implicit steps are MISSING -&gt; **Score 3** (Logic Gap / Flawed Success). See Example 1 and 2.
      - If all implicit steps are PRESENT -&gt; Continue to Efficiency Check.
@@ -481,10 +482,10 @@ The robot attempted to execute the plan. Here is what ACTUALLY happened:
 
 3. **CRITICAL REMINDERS:**
    - **Ignore PART 3** - those actions never happened.
-   - **Physical Failure Cap**: If simulation failed (❌), you can still award Score 3 if the core goal was met BEFORE the crash (BRANCH B with "Crash Landing"). See Example 4.
+   - **Physical Failure Cap**: If simulation failed (❌), you can still award Score 3 if the core goal was met BEFORE the crash (BRANCH B with &quot;Crash Landing&quot;). See Example 4.
    - **Progress Calculation**: Assess semantic progress (how much of the task was accomplished), not just step count.
-   - **The "Strict 4" Rule**: When in doubt between 3 and 4, choose 3. Score 4 requires perfection AND complete logic.
-   - **Logic Audit is Mandatory**: Always check for implicit steps. "Wash" = water flow. "Heat" = device on. "Cook" = stove on. Missing these = Score 3.
+   - **The &quot;Strict 4&quot; Rule**: When in doubt between 3 and 4, choose 3. Score 4 requires perfection AND complete logic.
+   - **Logic Audit is Mandatory**: Always check for implicit steps. &quot;Wash&quot; = water flow. &quot;Heat&quot; = device on. &quot;Cook&quot; = stove on. Missing these = Score 3.
    - **Study the Examples**: The four examples demonstrate reasoning patterns. Follow their logic when evaluating similar cases.
 
 4. **Spatial Reasoning:**
