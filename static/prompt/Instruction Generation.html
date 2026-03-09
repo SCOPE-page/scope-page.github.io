@@ -1,4 +1,107 @@
-# Few-shot Examples for Instruction Generation
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instruction Generation - SCOPE Prompt Template</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #2563eb;
+      border-bottom: 3px solid #2563eb;
+      padding-bottom: 10px;
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-bottom: 30px;
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .back-link:hover {
+      color: #1d4ed8;
+      text-decoration: underline;
+    }
+    
+    .content {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 4px;
+      padding: 30px;
+      margin-top: 20px;
+      overflow-x: auto;
+    }
+    
+    pre {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      color: #212529;
+      margin: 0;
+    }
+    
+    code {
+      font-family: 'Courier New', Courier, monospace;
+      background: #e9ecef;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+      
+      h1 {
+        font-size: 1.5em;
+      }
+      
+      .content {
+        padding: 15px;
+      }
+      
+      pre {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../../index.html" class="back-link">← Back to SCOPE Homepage</a>
+    <h1>Instruction Generation Prompt Template</h1>
+    <div class="content">
+      <pre># Few-shot Examples for Instruction Generation
 # Lines before line 340 are few-shot examples for filling.
 # The template looking of prompt starts at line 340.
 
@@ -237,7 +340,7 @@ CoT Analysis:
 
 Step 1 (Locate Objects): Found SalmonFillet in Refrigerator, Saucepan on Stove, and Plate on DiningTable.
 
-Step 2 (Plan Action): Create a sequential pipeline: Extract salmon -> Place in saucepan -> Change stove state to 'on' -> Wait/Simulate cook -> Move to plate -> Final delivery.
+Step 2 (Plan Action): Create a sequential pipeline: Extract salmon -&gt; Place in saucepan -&gt; Change stove state to 'on' -&gt; Wait/Simulate cook -&gt; Move to plate -&gt; Final delivery.
 
 Step 3 (Synthesize): String together multiple sub-tasks into a cohesive cooking and serving workflow.
 
@@ -276,7 +379,7 @@ CoT Analysis:
 
 Step 1 (Locate Objects): Found WaterBottle (Fridge), Kettle (Range), and Cup (CoffeeTable).
 
-Step 2 (Plan Action): Logic flow: Get water -> Pour into kettle -> Toggle kettle power -> Pour hot water into cup -> Transport cup to living room.
+Step 2 (Plan Action): Logic flow: Get water -&gt; Pour into kettle -&gt; Toggle kettle power -&gt; Pour hot water into cup -&gt; Transport cup to living room.
 
 Step 3 (Synthesize): Detail the transformation of the state (water to hot water) and the movement of the final vessel.
 
@@ -317,7 +420,7 @@ CoT Analysis:
 
 Step 1 (Locate Objects): Found TeaBag (Dresser), Faucet (Bathroom), ElectricKettle (Kitchen), and Cup (Dresser).
 
-Step 2 (Plan Action): Complex path: Bedroom (Teabag/Cup) -> Bathroom (Water) -> Kitchen (Boil) -> LivingRoom (Deliver). Requires handling multiple objects simultaneously or in tight sequence.
+Step 2 (Plan Action): Complex path: Bedroom (Teabag/Cup) -&gt; Bathroom (Water) -&gt; Kitchen (Boil) -&gt; LivingRoom (Deliver). Requires handling multiple objects simultaneously or in tight sequence.
 
 Step 3 (Synthesize): Integrate navigation across four distinct zones into a logical tea-making process.
 
@@ -391,7 +494,7 @@ CoT Analysis:
 
 Step 1 (Locate Objects): Identified Kettle, Cup, and Water Source (implied sink/table) all within the Kitchen.
 
-Step 2 (Plan Action): Focus on the internal logic of heating: Fill -> Heat -> Transfer. Even within one room, the order of operations is critical for safety and success.
+Step 2 (Plan Action): Focus on the internal logic of heating: Fill -&gt; Heat -&gt; Transfer. Even within one room, the order of operations is critical for safety and success.
 
 Step 3 (Synthesize): Summarize the tool-use sequence into a direct operational guide.
 
@@ -637,7 +740,7 @@ You must generate instructions in THREE difficulty categories:
 #### 2. COMPLEX
 **Characteristics:**
 - Multi-step operations (3+ steps)
-- **CRITICAL:** Must combine **Navigation/Transport** with **Interaction/State Change** (e.g., Move -> Open -> Pick -> Place -> Close).
+- **CRITICAL:** Must combine **Navigation/Transport** with **Interaction/State Change** (e.g., Move -&gt; Open -&gt; Pick -&gt; Place -&gt; Close).
 - Sequential operations with dependencies
 - Clear step-by-step process
 
@@ -725,7 +828,7 @@ For each scene, generate:
      * **The Cook:** Focuses on fridge, ingredients, dishes. ("Get the ingredients ready.")
    - Do NOT explicitly state the persona, but write the instruction *as if* you are that person.
 
-### HANDLING INTERACTION & STATES (CRITICAL)
+### HANDLING INTERACTION &amp; STATES (CRITICAL)
 
 The input scene graph lists objects but **DOES NOT** specify their current states (e.g., whether a TV is on/off, or a Fridge is open/closed).
 **You must generate state-change instructions based solely on OBJECT AFFORDANCE (what an object CAN do).**
@@ -816,7 +919,7 @@ You must return a JSON object with this structure:
       {
         "cot_analysis": {
           "step1_locate_objects": "Found Apple in Kitchen and Plate in Kitchen. Target location is DiningTable in LivingRoom.",
-          "step2_plan_action": "Create a sequential pipeline: Wash apple in kitchen -> Get plate -> Transport both to dining table.",
+          "step2_plan_action": "Create a sequential pipeline: Wash apple in kitchen -&gt; Get plate -&gt; Transport both to dining table.",
           "step3_synthesize": "String together multiple sub-tasks into a cohesive workflow with clear sequence markers."
         },
         "target_objects": ["Apple", "Plate"],
@@ -831,7 +934,7 @@ You must return a JSON object with this structure:
       {
         "cot_analysis": {
           "step1_locate_objects": "User needs 'warm water'. Found Kettle and Cup in Kitchen. Water source implied (sink/faucet).",
-          "step2_plan_action": "Translate the abstract goal into physical actions: Fill kettle -> Heat water -> Pour into cup.",
+          "step2_plan_action": "Translate the abstract goal into physical actions: Fill kettle -&gt; Heat water -&gt; Pour into cup.",
           "step3_generalize": "Generate an informal, human-like request that reflects the user's need rather than explicit robot steps."
         },
         "target_objects": ["Cup", "Kettle"],
@@ -899,3 +1002,8 @@ You will receive a scene description in this format:
 Generate exactly the specified number of instructions for each difficulty category for this scene.
 Ensure maximum diversity in sentence structures, verbs, and phrasing across all instructions.
 
+</pre>
+    </div>
+  </div>
+</body>
+</html>

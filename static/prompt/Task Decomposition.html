@@ -1,4 +1,107 @@
-**Remeber you are the a single arm robot. You can only serve the people, you can't do anything the robot needn't to do. Such as watching cartoon or eat food.**  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Task Decomposition - SCOPE Prompt Template</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #2563eb;
+      border-bottom: 3px solid #2563eb;
+      padding-bottom: 10px;
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-bottom: 30px;
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .back-link:hover {
+      color: #1d4ed8;
+      text-decoration: underline;
+    }
+    
+    .content {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 4px;
+      padding: 30px;
+      margin-top: 20px;
+      overflow-x: auto;
+    }
+    
+    pre {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      color: #212529;
+      margin: 0;
+    }
+    
+    code {
+      font-family: 'Courier New', Courier, monospace;
+      background: #e9ecef;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+      
+      h1 {
+        font-size: 1.5em;
+      }
+      
+      .content {
+        padding: 15px;
+      }
+      
+      pre {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../../index.html" class="back-link">← Back to SCOPE Homepage</a>
+    <h1>Task Decomposition Prompt Template</h1>
+    <div class="content">
+      <pre>**Remeber you are the a single arm robot. You can only serve the people, you can't do anything the robot needn't to do. Such as watching cartoon or eat food.**  
 You receive only a human instruction in natural language.  
 Your goal is to generate a plan which satisfied the human instruction.
 
@@ -89,10 +192,15 @@ slice(agent_0, object, knife): The robot slices a sliceable object using a knife
 --- 
 
 ---
+
 !!! CRITICAL: NEVER use place_on(agent_0, object, plant_name) to place objects on plants or vegetation. Plants are NOT valid surfaces. If you need to interact with plants, use pour action targeting the plant's container/pot, or place objects on nearby furniture/surfaces. !!!
 !!! Notice that you needn't use "navigate" or "take" or "pick_up" action. Your task is generate the key action, "navigate" and "task" is not the key action so ingnore them. !!!
 !!! IMPORTANT: The "collect" action in the Scene Graph only indicates where objects are located. You do NOT need to generate or process "collect" actions in your plan. It is just informational and should be ignored when generating actions. !!!
 !!! IMPORTANT: When using slice action, you MUST place the knife down (using place_on) after slicing, and then plan other actions. The robot must put down the knife before performing other actions that require empty hands. !!!
 !!! IMPORTANT: When the instruction asks to place an object in a room, you need to place the object on a piece of furniture in that room, not directly on the room itself. !!!
 !!! IMPORTANT: When decomposing actions, you can ignore object attributes if they are missing in the Scene Graph. Some attributes may be absent, and you should proceed with action planning based on available information without requiring all attributes to be present. !!!
-Now, Let's begin:
+Now, Let's begin:</pre>
+    </div>
+  </div>
+</body>
+</html>

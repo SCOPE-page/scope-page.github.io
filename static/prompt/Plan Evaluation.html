@@ -1,4 +1,107 @@
-# Few-shot Examples for Robot Plan Evaluation
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plan Evaluation - SCOPE Prompt Template</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #2563eb;
+      border-bottom: 3px solid #2563eb;
+      padding-bottom: 10px;
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-bottom: 30px;
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .back-link:hover {
+      color: #1d4ed8;
+      text-decoration: underline;
+    }
+    
+    .content {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 4px;
+      padding: 30px;
+      margin-top: 20px;
+      overflow-x: auto;
+    }
+    
+    pre {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      color: #212529;
+      margin: 0;
+    }
+    
+    code {
+      font-family: 'Courier New', Courier, monospace;
+      background: #e9ecef;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+      
+      h1 {
+        font-size: 1.5em;
+      }
+      
+      .content {
+        padding: 15px;
+      }
+      
+      pre {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../../index.html" class="back-link">← Back to SCOPE Homepage</a>
+    <h1>Plan Evaluation Prompt Template</h1>
+    <div class="content">
+      <pre># Few-shot Examples for Robot Plan Evaluation
 # Lines before line 340 are few-shot examples for filling.
 # The template looking of prompt starts at line 340.
 
@@ -73,7 +176,7 @@
 1. **Relevance**: Relevant.
 2. **Goal Check**: Apple is in trash. 
    - *Logic Audit*: No hidden steps needed. No water/power required for trash.
-   - *Efficiency*: Path is optimal (A -> B). No redundant steps.
+   - *Efficiency*: Path is optimal (A -&gt; B). No redundant steps.
 3. **Scoring**: Meets all criteria for perfection.
    - *Result*: **Score 4 (Perfect)**.
 
@@ -94,7 +197,7 @@
 1. pick(book)
 2. navigate(bed)
 3. place_on(book, bed)
-4. navigate(door) --> ❌ FAILED here (Simulation Crash)
+4. navigate(door) --&gt; ❌ FAILED here (Simulation Crash)
 **Simulation Status**: ❌ FAILED
 
 **Evaluation Reasoning**:
@@ -127,8 +230,8 @@ Your job is to judge the robot based **ONLY on PART 1: The Effective Trace** (ac
 **1. GATEKEEPER: Semantic Relevance**
 - Look at the executed actions in PART 1.
 - Are they logically trying to solve the specific User Instruction?
-- **IF NO** (Irrelevant, random, or hallucinated) -> **SCORE 0**. (Stop here).
-- **IF YES** -> Proceed to next step.
+- **IF NO** (Irrelevant, random, or hallucinated) -&gt; **SCORE 0**. (Stop here).
+- **IF YES** -&gt; Proceed to next step.
 
 **2. BRANCHING POINT: Did the robot finish the job?**
 - Did the actions in PART 1 *fully achieve* the final goal state of the instruction?
@@ -137,25 +240,25 @@ Your job is to judge the robot based **ONLY on PART 1: The Effective Trace** (ac
 **--- BRANCH A: NO (Task Incomplete) ---**
 - The simulation failed or stopped before the goal was reached.
 - **CRITICAL: Check if PART 1 contains ONLY navigation actions (no object interaction)**
-  - **If PART 1 has ONLY navigate actions** (no pick, place, open, close, fill, pour, etc.) -> **SCORE 0** (Navigation Only - No Actual Work Done).
-  - *Example: Instruction "Water the plants". Robot: navigate(agent, room1, room2) -> FAILED. This is just walking, no interaction -> Score 0.*
+  - **If PART 1 has ONLY navigate actions** (no pick, place, open, close, fill, pour, etc.) -&gt; **SCORE 0** (Navigation Only - No Actual Work Done).
+  - *Example: Instruction "Water the plants". Robot: navigate(agent, room1, room2) -&gt; FAILED. This is just walking, no interaction -&gt; Score 0.*
 - Calculate the Semantic Progress of PART 1 (only if there WAS actual interaction):
-    - **If < 50% progress** (e.g., picked item but failed to place) -> **SCORE 1** (Early Failure / Poor Execution).
-    - **If ≥ 50% progress** (e.g., picked item, sliced bread, but failed to place) -> **SCORE 2** (Partial Completion / Late Failure).
-- *Example: Instruction "Slice bread and place on plate". Robot picked up knife and bread (Success) but failed to slice. This is >50% progress -> Score 2.*
+    - **If &lt; 50% progress** (e.g., picked item but failed to place) -&gt; **SCORE 1** (Early Failure / Poor Execution).
+    - **If ≥ 50% progress** (e.g., picked item, sliced bread, but failed to place) -&gt; **SCORE 2** (Partial Completion / Late Failure).
+- *Example: Instruction "Slice bread and place on plate". Robot picked up knife and bread (Success) but failed to slice. This is &gt;50% progress -&gt; Score 2.*
 
 **--- BRANCH B: YES (Task Complete) ---**
 - The robot successfully achieved the goal. Now perform a **Logic Audit**:
   - **Logic Audit**: Check if the instruction implies any implicit steps that are missing.
     - *Examples*: "Wash" requires water flow (toggle_on faucet). "Heat" requires device activation (toggle_on microwave). "Cook" requires turning on stove.
-    - If implicit steps are missing -> **SCORE 3** (Logic Gap / Flawed Success).
-    - If all implicit steps are present -> Continue to Efficiency Check.
+    - If implicit steps are missing -&gt; **SCORE 3** (Logic Gap / Flawed Success).
+    - If all implicit steps are present -&gt; Continue to Efficiency Check.
 - **Efficiency Check** (only if Logic Audit passes):
-    - **If Efficient** (No redundant steps, optimal path, logical sequence) -> **SCORE 4** (Perfect Execution).
-    - **If Inefficient** (Redundant steps, backtracking, unnecessary actions, but goal achieved) -> **SCORE 3** (Suboptimal Success).
-- *Example: Instruction "Get apple from fridge". Robot: open_fridge -> pick_apple -> close_fridge -> navigate -> place_on_table. This is efficient -> Score 4.*
-- *Example: Instruction "Get apple from fridge". Robot: open_fridge -> close_fridge -> open_fridge -> pick_apple -> navigate -> place_on_table. This has redundant open/close -> Score 3.*
-- *Example: Instruction "Wash mug". Robot: place_in(mug, sink) -> open(soap). Missing toggle_on(faucet) -> Score 3 (Logic Gap).*
+    - **If Efficient** (No redundant steps, optimal path, logical sequence) -&gt; **SCORE 4** (Perfect Execution).
+    - **If Inefficient** (Redundant steps, backtracking, unnecessary actions, but goal achieved) -&gt; **SCORE 3** (Suboptimal Success).
+- *Example: Instruction "Get apple from fridge". Robot: open_fridge -&gt; pick_apple -&gt; close_fridge -&gt; navigate -&gt; place_on_table. This is efficient -&gt; Score 4.*
+- *Example: Instruction "Get apple from fridge". Robot: open_fridge -&gt; close_fridge -&gt; open_fridge -&gt; pick_apple -&gt; navigate -&gt; place_on_table. This has redundant open/close -&gt; Score 3.*
+- *Example: Instruction "Wash mug". Robot: place_in(mug, sink) -&gt; open(soap). Missing toggle_on(faucet) -&gt; Score 3 (Logic Gap).*
 
 ### SCORING RUBRIC SUMMARY (0-4)
 
@@ -163,15 +266,15 @@ Your job is to judge the robot based **ONLY on PART 1: The Effective Trace** (ac
 - PART 1 is empty or contains actions completely irrelevant to the Instruction.
 - **OR**: PART 1 contains ONLY navigation actions (navigate) with NO actual object interaction (no pick, place, open, close, fill, pour, etc.).
 - The robot did nothing meaningful or wasted time on unrelated tasks.
-- *Example: "Water the plants" but robot only navigated to balcony and failed. No interaction with watering can or plants -> Score 0.*
+- *Example: "Water the plants" but robot only navigated to balcony and failed. No interaction with watering can or plants -&gt; Score 0.*
 
 **1 (Early Failure / Poor Execution)**
-- PART 1 contains relevant actions WITH actual object interaction (not just navigation) but covers < 50% of necessary steps.
+- PART 1 contains relevant actions WITH actual object interaction (not just navigation) but covers &lt; 50% of necessary steps.
 - The robot showed understanding and attempted interaction but failed early (e.g., picked up item but couldn't place it).
 - **Note**: If PART 1 has ONLY navigation, use Score 0 instead.
 
 **2 (Partial Completion / Late Failure)**
-- PART 1 covers >= 50% of necessary steps but task incomplete.
+- PART 1 covers &gt;= 50% of necessary steps but task incomplete.
 - The executed steps were meaningful and showed understanding, but failed near the end.
 
 **3 (Suboptimal Success / Flawed Success)**
@@ -260,7 +363,7 @@ Your job is to judge the robot based **ONLY on PART 1: The Effective Trace** (ac
 1. **Relevance**: Relevant.
 2. **Goal Check**: Apple is in trash. 
    - *Logic Audit*: No hidden steps needed. No water/power required for trash.
-   - *Efficiency*: Path is optimal (A -> B). No redundant steps.
+   - *Efficiency*: Path is optimal (A -&gt; B). No redundant steps.
 3. **Scoring**: Meets all criteria for perfection.
    - *Result*: **Score 4 (Perfect)**.
 
@@ -281,7 +384,7 @@ Your job is to judge the robot based **ONLY on PART 1: The Effective Trace** (ac
 1. pick(book)
 2. navigate(bed)
 3. place_on(book, bed)
-4. navigate(door) --> ❌ FAILED here (Simulation Crash)
+4. navigate(door) --&gt; ❌ FAILED here (Simulation Crash)
 **Simulation Status**: ❌ FAILED
 
 **Evaluation Reasoning**:
@@ -314,8 +417,8 @@ Output Format (JSON):
     "summary": "Brief summary of what the robot actually did (PART 1)",
     "execution_analysis": "Comment specifically on PART 1 actions and why they succeeded/failed",
     "evaluate": "Detailed reasoning following the decision tree (which branch and why)",
-    "score": <int 0-4>,
-    "success_boolean": <true if score >= 3 else false>
+    "score": &lt;int 0-4&gt;,
+    "success_boolean": &lt;true if score &gt;= 3 else false&gt;
 }
 
 ---
@@ -348,33 +451,33 @@ The robot attempted to execute the plan. Here is what ACTUALLY happened:
 - You must evaluate the robot based **ONLY on PART 1** (the actions that were actually executed).
 - **PART 3 actions do NOT count** - they failed and never happened in the physical world.
 - **Navigation-Only Rule**: If PART 1 contains ONLY navigate actions (no pick, place, open, close, fill, pour, etc.), the score MUST be **0**. Walking to a location is not considered meaningful work.
-- If the simulation failed (Status ❌), the maximum score is **3** (if Progress >= 50% AND has interaction) or **1** (if Progress < 50% AND has interaction) or **0** (if no interaction).
+- If the simulation failed (Status ❌), the maximum score is **3** (if Progress &gt;= 50% AND has interaction) or **1** (if Progress &lt; 50% AND has interaction) or **0** (if no interaction).
 
 **Evaluation Instructions (Follow the Decision Tree and Study the Examples):**
 
 1. **GATEKEEPER: Check Semantic Relevance**
    - Examine PART 1 actions. Are they trying to solve the Instruction?
-   - If irrelevant/random -> Score 0 (Stop).
+   - If irrelevant/random -&gt; Score 0 (Stop).
 
 2. **BRANCHING: Check Task Completion**
    - Does PART 1 fully achieve the Instruction's goal?
    
-   **If NO (Incomplete) -> BRANCH A:**
+   **If NO (Incomplete) -&gt; BRANCH A:**
    - **FIRST**: Check if PART 1 has ONLY navigation actions (no interaction).
-     - If YES -> **Score 0** (Navigation Only - No Actual Work Done). Stop here.
+     - If YES -&gt; **Score 0** (Navigation Only - No Actual Work Done). Stop here.
    - **THEN**: Calculate semantic progress of PART 1 (only if there WAS interaction).
-     - Progress < 50% -> Score 1 (Early Failure)
-     - Progress ≥ 50% -> Score 2 (Late Failure / Partial Completion)
+     - Progress &lt; 50% -&gt; Score 1 (Early Failure)
+     - Progress ≥ 50% -&gt; Score 2 (Late Failure / Partial Completion)
    
-   **If YES (Complete) -> BRANCH B:**
+   **If YES (Complete) -&gt; BRANCH B:**
    - **CRITICAL: Perform Logic Audit FIRST**
      - Check if the instruction implies implicit steps (e.g., "wash" needs water, "heat" needs device activation).
      - Review PART 1 actions: Are all implicit steps present?
-     - If implicit steps are MISSING -> **Score 3** (Logic Gap / Flawed Success). See Example 1 and 2.
-     - If all implicit steps are PRESENT -> Continue to Efficiency Check.
+     - If implicit steps are MISSING -&gt; **Score 3** (Logic Gap / Flawed Success). See Example 1 and 2.
+     - If all implicit steps are PRESENT -&gt; Continue to Efficiency Check.
    - **Efficiency Check** (only if Logic Audit passes):
-     - Efficient (optimal path, no redundancy) -> Score 4 (Perfect). See Example 3.
-     - Inefficient (redundant steps, backtracking) -> Score 3 (Suboptimal)
+     - Efficient (optimal path, no redundancy) -&gt; Score 4 (Perfect). See Example 3.
+     - Inefficient (redundant steps, backtracking) -&gt; Score 3 (Suboptimal)
 
 3. **CRITICAL REMINDERS:**
    - **Ignore PART 3** - those actions never happened.
@@ -391,3 +494,8 @@ The robot attempted to execute the plan. Here is what ACTUALLY happened:
 Please evaluate following the decision tree strictly.
 Remember: Only PART 1 exists for scoring. PART 3 is ignored.
 
+</pre>
+    </div>
+  </div>
+</body>
+</html>
