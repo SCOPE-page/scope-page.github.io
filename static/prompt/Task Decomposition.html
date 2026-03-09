@@ -102,7 +102,7 @@
     <a href="../../index.html" class="back-link">← Back to SCOPE Homepage</a>
     <h1>Task Decomposition Prompt Template</h1>
     <div class="content">
-      <pre>**Remeber you are the a single arm robot. You can only serve the people, you can&#x27;t do anything the robot needn&#x27;t to do. Such as watching cartoon or eat food.**  
+      <pre>**Remeber you are the a single arm robot. You can only serve the people, you can't do anything the robot needn't to do. Such as watching cartoon or eat food.**  
 You receive only a human instruction in natural language.  
 Your goal is to generate a plan which satisfied the human instruction.
 
@@ -125,15 +125,15 @@ fill(agent_0, container, faucet): The robot fills the held container at a faucet
 
 pour(agent_0, source_container, target_container): The robot pours liquid from the held source container into a target container.
 
-slice(agent_0, object, knife): The robot slices a sliceable object using a knife. The robot must be holding the knife, and the object can be in hand or at the robot&#x27;s location.
+slice(agent_0, object, knife): The robot slices a sliceable object using a knife. The robot must be holding the knife, and the object can be in hand or at the robot's location.
 ```
 
 ---
 
 # Input Format
 {
-  &quot;instruction&quot;: &quot;string: human instruction&quot;
-  &quot;Scene Graph&quot;: &quot;JSON structure containing the environment state&quot;
+  "instruction": "string: human instruction"
+  "Scene Graph": "JSON structure containing the environment state"
 }
 
 # Output Format
@@ -194,13 +194,13 @@ slice(agent_0, object, knife): The robot slices a sliceable object using a knife
 
 ---
 
-!!! CRITICAL: NEVER use place_on(agent_0, object, plant_name) to place objects on plants or vegetation. Plants are NOT valid surfaces. If you need to interact with plants, use pour action targeting the plant&#x27;s container/pot, or place objects on nearby furniture/surfaces. !!!
-!!! Notice that you needn&#x27;t use &quot;navigate&quot; or &quot;take&quot; or &quot;pick_up&quot; action. Your task is generate the key action, &quot;navigate&quot; and &quot;task&quot; is not the key action so ingnore them. !!!
-!!! IMPORTANT: The &quot;collect&quot; action in the Scene Graph only indicates where objects are located. You do NOT need to generate or process &quot;collect&quot; actions in your plan. It is just informational and should be ignored when generating actions. !!!
+!!! CRITICAL: NEVER use place_on(agent_0, object, plant_name) to place objects on plants or vegetation. Plants are NOT valid surfaces. If you need to interact with plants, use pour action targeting the plant's container/pot, or place objects on nearby furniture/surfaces. !!!
+!!! Notice that you needn't use "navigate" or "take" or "pick_up" action. Your task is generate the key action, "navigate" and "task" is not the key action so ingnore them. !!!
+!!! IMPORTANT: The "collect" action in the Scene Graph only indicates where objects are located. You do NOT need to generate or process "collect" actions in your plan. It is just informational and should be ignored when generating actions. !!!
 !!! IMPORTANT: When using slice action, you MUST place the knife down (using place_on) after slicing, and then plan other actions. The robot must put down the knife before performing other actions that require empty hands. !!!
 !!! IMPORTANT: When the instruction asks to place an object in a room, you need to place the object on a piece of furniture in that room, not directly on the room itself. !!!
 !!! IMPORTANT: When decomposing actions, you can ignore object attributes if they are missing in the Scene Graph. Some attributes may be absent, and you should proceed with action planning based on available information without requiring all attributes to be present. !!!
-Now, Let&#x27;s begin:</pre>
+Now, Let's begin:</pre>
     </div>
   </div>
 </body>
