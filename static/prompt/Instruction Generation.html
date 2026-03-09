@@ -1,0 +1,901 @@
+# Few-shot Examples for Instruction Generation
+# Lines before line 340 are few-shot examples for filling.
+# The template looking of prompt starts at line 340.
+
+I. Simple Instructions (Simple)
+
+=== Scene 0 (Index: 1) ===
+Scene Graph:
+[Room: Bedroom]
+- Bed (contains: ThrowBlanket)
+- Wardrobe [closed] (contains: StorageBox)
+
+[Room: Bedroom]
+- Bed (contains: Laptop [off])
+- Wardrobe [closed] (contains: Jeans, Jeans)
+
+[Room: Bathroom]
+- BathroomVanity [closed] (contains: HandSoap, Razor, ToiletPaperRoll, ToiletPaperRoll, ToothbrushHolder)
+
+[Room: LivingRoom]
+- Sofa (contains: RemoteControl, ThrowPillow, ThrowPillow)
+
+[Room: Kitchen]
+- Refrigerator [off] (contains: Egg, Egg, Egg, Egg, Egg, Milk)
+- Stove (contains: Saucepan)
+
+[Room: DiningRoom]
+- DiningChair (contains: Coat)
+- DiningChair (contains: Backpack)
+- DiningTable (contains: FruitBowl, Placemat, Placemat, Placemat, Placemat, SaltShaker)
+
+[Room: Hallway]
+- ShoeBenchWithStorage [closed] (contains: Key, Umbrella)
+
+CoT Analysis:
+
+Step 1 (Locate Objects): Identified FruitBowl on DiningTable and target surface Bed in Bedroom.
+
+Step 2 (Plan Action): The robot can pick up the bowl and transport it across rooms to the bed's surface.
+
+Step 3 (Synthesize): Convert the physical movement into a specific, direct command.
+
+Instruction: Move the fruit bowl from the dining table onto the bed.
+
+
+=== Scene 3 (Index: 4) ===
+Scene Graph:
+[Room: Bedroom]
+- Bed (contains: ThrowBlanket)
+- Wardrobe [closed] (contains: StorageBox)
+
+[Room: Bedroom]
+- Bed (contains: Laptop [off])
+- Wardrobe [closed] (contains: Jeans, Jeans)
+
+[Room: Bathroom]
+- BathroomVanity [closed] (contains: HandSoap, Razor, ToiletPaperRoll, ToiletPaperRoll, ToothbrushHolder)
+
+[Room: LivingRoom]
+- Sofa (contains: RemoteControl, ThrowPillow, ThrowPillow)
+
+[Room: Kitchen]
+- Refrigerator [off] (contains: Egg, Egg, Egg, Egg, Egg, Milk)
+- Stove (contains: Saucepan)
+
+[Room: DiningRoom]
+- DiningChair (contains: Coat)
+- DiningChair (contains: Backpack)
+- DiningTable (contains: FruitBowl, Placemat, Placemat, Placemat, Placemat, SaltShaker)
+
+[Room: Hallway]
+- ShoeBenchWithStorage [closed] (contains: Key, Umbrella)
+
+CoT Analysis:
+
+Step 1 (Locate Objects): Found Milk inside the Refrigerator in the Kitchen and the target DiningTable in the DiningRoom.
+
+Step 2 (Plan Action): The robot needs to open the refrigerator, retrieve the milk, and move it to the dining area.
+
+Step 3 (Synthesize): Formulate a pick-and-place command with specific object IDs.
+
+Instruction: Pick up milk_1 from refrigerator_1 and place it on the dining_table_1.
+
+
+=== Scene 5 (Index: 6) ===
+Scene Graph:
+[Room: Bedroom]
+- Bed (contains: ThrowBlanket)
+- Wardrobe [closed] (contains: ClothesHanger, ClothesHanger, ClothesHanger, ClothesHanger, ClothesHanger)
+
+[Room: Bedroom]
+- Bed (contains: StuffedAnimal)
+- Wardrobe [closed] (contains: Shoebox, Shoebox)
+
+[Room: Bathroom]
+- VanityWithSink (contains: HandTowel, SoapDispenser, Toothbrush, Toothbrush)
+- WallMirror
+
+[Room: LivingRoom]
+- CoffeeTable (contains: Coaster, Coaster, Coaster, Coaster, Magazine, Magazine, Television, Vase)
+- Sofa (contains: RemoteControl, ThrowPillow, ThrowPillow)
+
+[Room: Kitchen]
+- Range (contains: FryingPan, Kettle)
+- Refrigerator [closed, off] (contains: EggCarton, Milk)
+
+[Room: Laundry]
+- WasherDryerComboUnit [off] (contains: FabricSoftener, LaundryBasket, LaundryDetergent)
+
+[Room: Balcony]
+- OutdoorLoungeChair (contains: OutdoorCushion)
+
+CoT Analysis:
+
+Step 1 (Locate Objects): Spotted the Television situated on the CoffeeTable in the LivingRoom.
+
+Step 2 (Plan Action): This is a state-change task; the robot only needs to interact with the device's power toggle.
+
+Step 3 (Synthesize): Use a functional verb ("Turn on") linked to the object's specific location.
+
+Instruction: Turn on the television that is placed on the coffee table.
+
+
+=== Scene 9 (Index: 10) ===
+Scene Graph:
+[Room: Bedroom]
+- Bed (contains: ThrowBlanket)
+- Dresser [closed] (contains: JewelryTray, PerfumeBottle, TableLamp [off])
+
+[Room: Bedroom]
+- Bed (contains: Pillow, Pillow)
+
+[Room: Bedroom]
+- Bed (contains: StuffedAnimal)
+
+[Room: Bathroom]
+- ShowerEnclosure (contains: ShampooBottle)
+- Toilet (contains: AirFreshener)
+- VanityWithSink (contains: HandSoapDispenser, ToiletPaperRoll, ToiletPaperRoll, ToiletPaperRoll)
+
+[Room: Bathroom]
+- Toilet
+- VanityWithSink (contains: FirstAidKit, HairDryer [off], ToothbrushHolder)
+
+[Room: LivingRoom]
+- Sofa (contains: RemoteControl, ThrowPillow, ThrowPillow, ThrowPillow)
+
+[Room: Kitchen]
+- Refrigerator [closed, off] (contains: EggCarton, LeftoverContainer, LeftoverContainer, MilkCarton)
+
+[Room: DiningRoom]
+- DiningTable (contains: FruitBowl, Placemat, Placemat, Placemat, Placemat)
+
+CoT Analysis:
+
+Step 1 (Locate Objects): Located RemoteControl on Sofa_1 and the target Dresser_1 in the Bedroom_1.
+
+Step 2 (Plan Action): Plan a cross-room navigation from the living room to the bedroom to deliver the item.
+
+Step 3 (Synthesize): Create a clear delivery instruction involving two distinct rooms.
+
+Instruction: Pick up remote_control_1 from sofa_1 and place it on dresser_1 in bedroom_1.
+
+
+=== Scene 12 (Index: 13) ===
+Scene Graph:
+[Room: Bedroom]
+- Bed (contains: ThrowPillow, ThrowPillow)
+- Wardrobe [closed] (contains: Hanger, Hanger, Hanger, Hanger, Hanger, Shoebox, Shoebox)
+
+[Room: Bedroom]
+- Bed (contains: Quilt)
+- Dresser [closed] (contains: HairBrush, JewelryBox, Sock, Sock, Sock)
+
+[Room: Bedroom]
+- Bed (contains: Blanket, StuffedAnimal)
+
+[Room: Bathroom]
+- BathroomVanityCabinet [closed] (contains: FirstAidKit, Razor, Toothbrush, Toothbrush, Toothpaste)
+
+[Room: LivingRoom]
+- CoffeeTable (contains: Candle, Coaster, Coaster, Coaster, Coaster)
+- Sofa (contains: RemoteControl)
+
+[Room: Kitchen]
+- Range (contains: Saucepan)
+- Refrigerator [closed, off] (contains: Apple, Apple, Apple)
+
+[Room: Laundryroom]
+- WashingMachine [off] (contains: DetergentBottle)
+
+[Room: StorageRoom]
+- ShelvingUnit (contains: Toolbox)
+
+CoT Analysis:
+
+Step 1 (Locate Objects): Identified Apple inside the Refrigerator and the target CoffeeTable in the LivingRoom.
+
+Step 2 (Plan Action): Retrieve the item from a closed container and transport it to a different social area.
+
+Step 3 (Synthesize): Use "Retrieve" to imply the extraction and movement of the object.
+
+Instruction: Retrieve apple_1 from refrigerator_1 and place it on coffee_table_1.
+
+
+II. Complex Instructions (Complex)
+
+=== Scene 6 (Index: 7) ===
+Scene Graph:
+[Room: Bedroom]
+- Bed (contains: ThrowBlanket)
+- Wardrobe [closed] (contains: StorageBox)
+
+[Room: Bedroom]
+- Bed (contains: Laptop [off])
+- Wardrobe [closed] (contains: Jeans, Jeans)
+
+[Room: Bathroom]
+- BathroomVanity [closed] (contains: HandSoap, Razor, ToiletPaperRoll, ToiletPaperRoll, ToothbrushHolder)
+
+[Room: LivingRoom]
+- Sofa (contains: RemoteControl, ThrowPillow, ThrowPillow)
+
+[Room: Kitchen]
+- Refrigerator [off] (contains: Egg, Egg, Egg, Egg, Egg, Lemon, Milk, SalmonFillet)
+- Stove (contains: Saucepan)
+
+[Room: DiningRoom]
+- DiningChair (contains: Coat)
+- DiningChair (contains: Backpack)
+- DiningTable (contains: FruitBowl, Placemat, Placemat, Placemat, Placemat, Plate, SaltShaker)
+
+[Room: Hallway]
+- ShoeBenchWithStorage [closed] (contains: Key, Umbrella)
+
+CoT Analysis:
+
+Step 1 (Locate Objects): Found SalmonFillet in Refrigerator, Saucepan on Stove, and Plate on DiningTable.
+
+Step 2 (Plan Action): Create a sequential pipeline: Extract salmon -> Place in saucepan -> Change stove state to 'on' -> Wait/Simulate cook -> Move to plate -> Final delivery.
+
+Step 3 (Synthesize): String together multiple sub-tasks into a cohesive cooking and serving workflow.
+
+Instruction: Take the raw salmon fillet from the refrigerator, place it in the saucepan on the stove, turn the stove on to cook it, then transfer the cooked salmon onto a plate and serve it on the dining table.
+
+
+=== Scene 7 (Index: 8) ===
+Scene Graph:
+[Room: Bedroom]
+- Bed (contains: ThrowBlanket)
+- Wardrobe [closed] (contains: ClothesHanger, ClothesHanger, ClothesHanger, ClothesHanger, ClothesHanger)
+
+[Room: Bedroom]
+- Bed (contains: StuffedAnimal)
+- Wardrobe [closed] (contains: Shoebox, Shoebox)
+
+[Room: Bathroom]
+- VanityWithSink (contains: HandTowel, SoapDispenser, Toothbrush, Toothbrush)
+- WallMirror
+
+[Room: LivingRoom]
+- CoffeeTable (contains: Coaster, Coaster, Coaster, Coaster, Cup, Magazine, Magazine, Vase)
+- Sofa (contains: RemoteControl, ThrowPillow, ThrowPillow)
+
+[Room: Kitchen]
+- Range (contains: FryingPan, Kettle)
+- Refrigerator [closed, off] (contains: EggCarton, Milk, WaterBottle)
+
+[Room: Laundry]
+- WasherDryerComboUnit [off] (contains: FabricSoftener, LaundryBasket, LaundryDetergent)
+
+[Room: Balcony]
+- OutdoorLoungeChair (contains: OutdoorCushion)
+
+CoT Analysis:
+
+Step 1 (Locate Objects): Found WaterBottle (Fridge), Kettle (Range), and Cup (CoffeeTable).
+
+Step 2 (Plan Action): Logic flow: Get water -> Pour into kettle -> Toggle kettle power -> Pour hot water into cup -> Transport cup to living room.
+
+Step 3 (Synthesize): Detail the transformation of the state (water to hot water) and the movement of the final vessel.
+
+Instruction: Fill the kettle with water from the water bottle, power on the kettle to boil, pour the hot water into the cup, and set the cup on the coffee table.
+
+
+=== Scene 11 (Index: 12) ===
+Scene Graph:
+[Room: Bedroom]
+- Bed (contains: ThrowBlanket)
+- Dresser [closed] (contains: Cup, JewelryTray, PerfumeBottle, TableLamp [off], TeaBag)
+
+[Room: Bedroom]
+- Bed (contains: Pillow, Pillow)
+
+[Room: Bedroom]
+- Bed (contains: StuffedAnimal)
+
+[Room: Bathroom]
+- ShowerEnclosure (contains: ShampooBottle)
+- Toilet (contains: AirFreshener)
+- VanityWithSink (contains: HandSoapDispenser, ToiletPaperRoll, ToiletPaperRoll, ToiletPaperRoll)
+
+[Room: Bathroom]
+- Toilet
+- VanityWithSink (contains: FirstAidKit, HairDryer [off], ToothbrushHolder)
+
+[Room: LivingRoom]
+- Sofa (contains: RemoteControl, ThrowPillow, ThrowPillow, ThrowPillow)
+
+[Room: Kitchen]
+- Refrigerator [closed, off] (contains: EggCarton, ElectricKettle, LeftoverContainer, LeftoverContainer, MilkCarton)
+
+[Room: DiningRoom]
+- DiningTable (contains: FruitBowl, Placemat, Placemat, Placemat, Placemat)
+
+CoT Analysis:
+
+Step 1 (Locate Objects): Found TeaBag (Dresser), Faucet (Bathroom), ElectricKettle (Kitchen), and Cup (Dresser).
+
+Step 2 (Plan Action): Complex path: Bedroom (Teabag/Cup) -> Bathroom (Water) -> Kitchen (Boil) -> LivingRoom (Deliver). Requires handling multiple objects simultaneously or in tight sequence.
+
+Step 3 (Synthesize): Integrate navigation across four distinct zones into a logical tea-making process.
+
+Instruction: Pick up a tea bag from the dresser, fill an electric kettle with water from the bathroom faucet, turn the kettle on, pour the hot water over the tea bag into a cup, and bring the cup to the sofa in the living room.
+
+
+=== Scene 13 (Index: 14) ===
+Scene Graph:
+[Room: Bedroom]
+- Bed (contains: Comforter)
+- Nightstand [closed] (contains: AlarmClock, Book, Book, TableLamp [off])
+
+[Room: Bathroom]
+- BathroomStorageCabinet [closed] (contains: FirstAidKit, ToiletPaper, ToiletPaper, ToiletPaper, Towel, Towel)
+
+[Room: LivingRoom]
+- CoffeeTable (contains: Coaster, Coaster, Coaster, Coaster, Novel, RemoteControl, Vase)
+- Sofa (contains: ThrowPillow, ThrowPillow)
+
+[Room: Kitchen]
+- DiningChair
+- DiningChair
+- DiningTable (contains: FruitBowl, Placemat, Placemat, Placemat, Placemat)
+- Refrigerator [closed, off] (contains: EggCarton, Milk)
+
+[Room: Office]
+- Desk (contains: Laptop [off], Notebook, Notebook, PenHolder)
+- OfficeChair (contains: Backpack)
+
+[Room: Entryway]
+- ShoeStorageBench (contains: Shoe, Shoe)
+
+CoT Analysis:
+
+Step 1 (Locate Objects): Found Novel (CoffeeTable), Nightstand (Bedroom), and TableLamp (Nightstand).
+
+Step 2 (Plan Action): Combine an object relocation task with an environmental adjustment (lighting) to prepare a reading spot.
+
+Step 3 (Synthesize): Connect the placement of the book with the immediate next logical action of turning on the light.
+
+Instruction: Pick up novel_1 from the coffee table in the living room, bring it to nightstand_1 in the bedroom, place it on the nightstand, and turn on table_lamp_1.
+
+
+=== Scene 14 (Index: 15) ===
+Scene Graph:
+[Room: Bedroom]
+- Bed (contains: Comforter)
+- Nightstand [closed] (contains: AlarmClock, Book, Book, TableLamp [off])
+
+[Room: Bathroom]
+- BathroomStorageCabinet [closed] (contains: FirstAidKit, ToiletPaper, ToiletPaper, ToiletPaper, Towel, Towel)
+
+[Room: LivingRoom]
+- CoffeeTable (contains: Coaster, Coaster, Coaster, Coaster, RemoteControl, Vase)
+- Sofa (contains: ThrowPillow, ThrowPillow)
+
+[Room: Kitchen]
+- DiningChair
+- DiningChair
+- DiningTable (contains: Cup, FruitBowl, Kettle, Placemat, Placemat, Placemat, Placemat)
+- Refrigerator [closed, off] (contains: EggCarton, Milk)
+
+[Room: Office]
+- Desk (contains: Laptop [off], Notebook, Notebook, PenHolder)
+- OfficeChair (contains: Backpack)
+
+[Room: Entryway]
+- ShoeStorageBench (contains: Shoe, Shoe)
+
+CoT Analysis:
+
+Step 1 (Locate Objects): Identified Kettle, Cup, and Water Source (implied sink/table) all within the Kitchen.
+
+Step 2 (Plan Action): Focus on the internal logic of heating: Fill -> Heat -> Transfer. Even within one room, the order of operations is critical for safety and success.
+
+Step 3 (Synthesize): Summarize the tool-use sequence into a direct operational guide.
+
+Instruction: Pick up the kettle, fill it with water, power it on to heat, then pour the hot water into a cup.
+
+
+III. Ambiguous/Intent Instructions (Ambiguous)
+
+=== Scene 1 (Index: 2) ===
+Scene Graph:
+[Room: Bedroom]
+- Bed (contains: ThrowBlanket)
+- Wardrobe [closed] (contains: StorageBox)
+
+[Room: Bedroom]
+- Bed (contains: Laptop [off])
+- Wardrobe [closed] (contains: Jeans, Jeans)
+
+[Room: Bathroom]
+- BathroomVanity [closed] (contains: HandSoap, Razor, ToiletPaperRoll, ToiletPaperRoll, ToothbrushHolder)
+
+[Room: LivingRoom]
+- Sofa (contains: RemoteControl, ThrowPillow, ThrowPillow)
+
+[Room: Kitchen]
+- Refrigerator [off] (contains: Egg, Egg, Egg, Egg, Egg, Milk)
+- Stove (contains: Saucepan)
+
+[Room: DiningRoom]
+- DiningChair (contains: Coat)
+- DiningChair (contains: Backpack)
+- DiningTable (contains: FruitBowl, Placemat, Placemat, Placemat, Placemat, SaltShaker)
+
+[Room: Hallway]
+- ShoeBenchWithStorage [closed] (contains: Key, Umbrella)
+
+CoT Analysis:
+
+Step 1 (Locate Objects): User is "hungry" for "eggs". Found Egg in Refrigerator and Saucepan on Stove.
+
+Step 2 (Plan Action): Translate the abstract state "hungry" into the physical task of preparing the identified eggs using the available cooking tool.
+
+Step 3 (Generalize): Generate an informal, human-like request that reflects the user's internal need rather than the robot's steps.
+
+Instruction: Hey robot, I'm hungry—make me some eggs.
+
+
+=== Scene 2 (Index: 3) ===
+Scene Graph:
+[Room: Bedroom]
+- Bed (contains: ThrowBlanket)
+- Wardrobe [closed] (contains: StorageBox)
+
+[Room: Bedroom]
+- Bed (contains: Laptop [off])
+- Wardrobe [closed] (contains: Jeans, Jeans)
+
+[Room: Bathroom]
+- BathroomVanity [closed] (contains: HandSoap, Razor, ToiletPaperRoll, ToiletPaperRoll, ToothbrushHolder)
+
+[Room: LivingRoom]
+- Sofa (contains: RemoteControl, ThrowPillow, ThrowPillow)
+
+[Room: Kitchen]
+- Refrigerator [off] (contains: Egg, Egg, Egg, Egg, Egg, Milk)
+- Stove (contains: Saucepan)
+
+[Room: DiningRoom]
+- DiningChair (contains: Coat)
+- DiningChair (contains: Backpack)
+- DiningTable (contains: FruitBowl, Placemat, Placemat, Placemat, Placemat, SaltShaker)
+
+[Room: Hallway]
+- ShoeBenchWithStorage [closed] (contains: Key, Umbrella)
+
+CoT Analysis:
+
+Step 1 (Locate Objects): Need a "snack" for "TV watching". Found FruitBowl on the DiningTable as the most suitable shareable snack.
+
+Step 2 (Plan Action): Identify the family's location (LivingRoom Sofa) and plan the delivery of the fruit bowl to that specific social context.
+
+Step 3 (Generalize): Frame the instruction around the purpose (family enjoyment) rather than just the movement.
+
+Instruction: Deliver a snack to the living room so the family can enjoy it while watching TV.
+
+
+=== Scene 4 (Index: 5) ===
+Scene Graph:
+[Room: Bedroom]
+- Bed (contains: ThrowBlanket)
+- Wardrobe [closed] (contains: StorageBox)
+
+[Room: Bedroom]
+- Bed (contains: Laptop [off])
+- Wardrobe [closed] (contains: Jeans, Jeans)
+
+[Room: Bathroom]
+- BathroomVanity [closed] (contains: HandSoap, Razor, ToiletPaperRoll, ToiletPaperRoll, ToothbrushHolder)
+
+[Room: LivingRoom]
+- Sofa (contains: RemoteControl, ThrowPillow, ThrowPillow)
+
+[Room: Kitchen]
+- Refrigerator [off] (contains: Egg, Egg, Egg, Egg, Egg, Milk)
+- Stove (contains: Saucepan)
+
+[Room: DiningRoom]
+- DiningChair (contains: Coat)
+- DiningChair (contains: Backpack)
+- DiningTable (contains: Cup, FruitBowl, Placemat, Placemat, Placemat, Placemat, SaltShaker)
+
+[Room: Hallway]
+- ShoeBenchWithStorage [closed] (contains: Key, Umbrella)
+
+CoT Analysis:
+
+Step 1 (Locate Objects): User is "thirsty". Found Milk in Refrigerator and Cup on DiningTable.
+
+Step 2 (Plan Action): Combine the drink and the vessel, then deliver to the requested "couch" (Sofa) in the LivingRoom.
+
+Step 3 (Generalize): Use a conversational tone that includes the user's context ("after work").
+
+Instruction: I'm thirsty after work, can you bring me a glass of milk to the couch?
+
+
+=== Scene 8 (Index: 9) ===
+Scene Graph:
+[Room: Bedroom]
+- Bed (contains: ThrowBlanket)
+- Dresser [closed] (contains: JewelryTray, PerfumeBottle, TableLamp [off])
+
+[Room: Bedroom]
+- Bed (contains: Pillow, Pillow)
+
+[Room: Bedroom]
+- Bed (contains: StuffedAnimal)
+
+[Room: Bathroom]
+- ShowerEnclosure (contains: ShampooBottle)
+- Toilet (contains: AirFreshener)
+- VanityWithSink (contains: HandSoapDispenser, ToiletPaperRoll, ToiletPaperRoll, ToiletPaperRoll)
+
+[Room: Bathroom]
+- Toilet
+- VanityWithSink (contains: FirstAidKit, HairDryer [off], ToothbrushHolder)
+
+[Room: LivingRoom]
+- Sofa (contains: RemoteControl, ThrowPillow, ThrowPillow, ThrowPillow)
+
+[Room: Kitchen]
+- Refrigerator [closed, off] (contains: EggCarton, LeftoverContainer, LeftoverContainer, MilkCarton)
+
+[Room: DiningRoom]
+- DiningTable (contains: FruitBowl, Placemat, Placemat, Placemat, Placemat)
+
+CoT Analysis:
+
+Step 1 (Locate Objects): Requirement for a "healthy snack" for "yoga". FruitBowl (DiningTable) is the healthiest option compared to other items.
+
+Step 2 (Plan Action): Match the healthy item to the wellness activity area (LivingRoom where the yoga break is occurring).
+
+Step 3 (Generalize): Focus on the health-conscious intent of the instruction.
+
+Instruction: Provide a healthy snack in the living room for a yoga break.
+
+
+=== Scene 10 (Index: 11) ===
+Scene Graph:
+[Room: Bedroom]
+- Bed (contains: ThrowBlanket)
+- Dresser [closed] (contains: JewelryTray, PerfumeBottle, TableLamp [off])
+
+[Room: Bedroom]
+- Bed (contains: Pillow, Pillow)
+
+[Room: Bedroom]
+- Bed (contains: StuffedAnimal)
+
+[Room: Bathroom]
+- ShowerEnclosure (contains: ShampooBottle)
+- Toilet (contains: AirFreshener)
+- VanityWithSink (contains: HandSoapDispenser, ToiletPaperRoll, ToiletPaperRoll, ToiletPaperRoll)
+
+[Room: Bathroom]
+- Toilet
+- VanityWithSink (contains: FirstAidKit, HairDryer [off], ToothbrushHolder)
+
+[Room: LivingRoom]
+- Sofa (contains: RemoteControl, ThrowPillow, ThrowPillow, ThrowPillow)
+
+[Room: Kitchen]
+- Refrigerator [closed, off] (contains: EggCarton, LeftoverContainer, LeftoverContainer, MilkCarton)
+
+[Room: DiningRoom]
+- DiningTable (contains: FruitBowl, Placemat, Placemat, Placemat, Placemat)
+
+CoT Analysis:
+
+Step 1 (Locate Objects): Requirement for "cozy", "light", and "nice smell". Identified TableLamp (Bedroom Dresser) and PerfumeBottle (Dresser).
+
+Step 2 (Plan Action): To fulfill "cozy", the robot should turn on the lamp and bring/use the perfume to create the desired atmosphere for the user's design work.
+
+Step 3 (Generalize): Convert the desired atmosphere into an actionable request for environmental modification.
+
+Instruction: I'm staying up late to design, make the room cozy with some light and a nice smell.
+
+---
+
+#The actual Prompt Template:
+
+You are an expert AI Data Generator for Embodied AI and Robot Planning.
+Your goal is to generate natural language instructions that a human would ask a robot to perform, categorized by difficulty levels.
+
+### CRITICAL GOAL
+The instructions must be solvable by a Planner (PDDL or TAMP). This means the instruction must implicitly or explicitly refer to objects and locations ACTUALLY PRESENT in the scene description.
+
+### ROBOT CONSTRAINT (CRITICAL)
+**The robot is a single-arm robot that can only manipulate ONE object at a time.**
+- ❌ **FORBIDDEN:** Instructions that require manipulating multiple objects simultaneously
+  - Bad: "Bring the wine bottle and potato to the table"
+  - Bad: "Move the apple and bowl together"
+- ✅ **ALLOWED:** Instructions that manipulate one object at a time (even in multi-step tasks)
+  - Good: "Bring the wine bottle to the table, then get the potato"
+  - Good: "Move the apple to the table" (single object)
+  - Good: "First bring the book, then bring the pen" (sequential, one at a time)
+
+### DIFFICULTY CATEGORIES
+
+You must generate instructions in THREE difficulty categories:
+
+#### 1. SIMPLE
+**Characteristics:**
+- Single-step operation
+- Clear and explicit object and location
+- Direct action with no ambiguity
+- No intermediate steps required
+
+**Pattern:**
+- Action: put, move, place, bring
+- Object: specific object name (use English name from scene)
+- Location: specific location (use English name from scene)
+
+#### 2. COMPLEX
+**Characteristics:**
+- Multi-step operations (3+ steps)
+- **CRITICAL:** Must combine **Navigation/Transport** with **Interaction/State Change** (e.g., Move -> Open -> Pick -> Place -> Close).
+- Sequential operations with dependencies
+- Clear step-by-step process
+
+**Pattern:**
+- Step 1: Location + Action + Object
+- Step 2: Action + Object (may depend on step 1)
+- Step 3: Final action combining previous steps
+- Uses: "First...", "then...", "finally..." or "First...", "next...", "lastly..."
+- Note: Use English names for both instruction text and target_objects/target_locations
+
+#### 3. VAGUE/AMBIGUOUS
+**Characteristics:**
+- High-level goal-oriented instructions
+- Implicit requirements that need inference
+- No explicit object or location mentioned
+- Requires understanding context and user intent
+- May involve environmental conditions
+
+**Pattern:**
+- User need/state: "I...", "I'm...", "I want..."
+- Environmental condition: "too...", "It's too..."
+- Request: "Help me...", "Can you..."
+- Goal-oriented: "I want to...", "I need to..."
+- Note: Use English for instruction text and English object names in target_objects
+
+### INSTRUCTION GENERATION GUIDELINES
+
+For each scene, generate:
+- **N Simple instructions**: Clear, single-step operations (N will be specified)
+- **N Complex instructions**: Multi-step operations with dependencies (N will be specified)
+- **N Vague instructions**: Goal-oriented, requiring inference (N will be specified)
+
+**Total: 3N instructions per scene**
+
+### CRITICAL DIVERSITY REQUIREMENTS (MUST FOLLOW)
+
+1. **Sentence Structure Variety** (MANDATORY):
+   - Use at least 3 different sentence structures across all instructions:
+     * **Imperative (Command)**: "Put the apple on the table"
+     * **Interrogative (Question)**: "Can you put the apple on the table?"
+     * **Request (Polite)**: "Please put the apple on the table"
+     * **Declarative (Statement)**: "I need the apple on the table"
+     * **Conditional**: "If possible, put the apple on the table"
+   - Distribute different structures evenly across difficulty categories
+   - DO NOT use the same sentence structure for all instructions
+
+2. **Verb Diversity** (MANDATORY):
+   - Use varied natural action verbs:
+     * **Movement**: transfer, relocate, shift, put ,move,place,bring
+     * **Placement**: set, arrange, position, deposit, stash, lay, rest
+     * **Retrieval**: fetch, grab, retrieve, collect, pick up, get, take
+     * **Organization**: insert, stack, organize, clear, tidy, sort, group
+     * **Other**: hide, store, remove, deliver, carry
+   - Each difficulty category must use at least 3-4 different verbs
+   - Prioritize natural, commonly used verbs over formal ones
+
+3. **Avoid Unnecessary Modifiers**:
+   - DO NOT use adjectives/adverbs unless absolutely necessary
+   - ❌ **BAD**: "carefully put", "gently place", "quickly move", "slowly transfer"
+   - ✅ **GOOD**: "put", "place", "move", "transfer"
+   - **Exception**: Vague instructions may need modifiers when describing goals (e.g., "warm water", "clean plate")
+   - Keep instructions concise and direct
+
+4. **Alternative Descriptions**:
+   - For similar operations, generate different phrasings
+   - Example variations for "move object to location":
+     * "Put the apple on the table"
+     * "Move the apple to the table"
+     * "Place the apple onto the table"
+     * "Set the apple down on the table"
+     * "Slide the apple to the table"
+   - Ensure each instruction has a unique phrasing, even if describing similar actions
+
+5. **Object and Location Rotation**:
+   - DO NOT always use the most common objects (e.g., Apple, RemoteControl)
+   - Rotate through different objects in the scene
+   - Use less common objects when possible (e.g., Statue, Candle, TissueBox)
+   - Vary target locations across instructions
+
+6. **Contextual Scenarios (Personas)**:
+   - Imagine different users to drive semantic diversity:
+     * **The Cleaner:** Focuses on tidying, putting things away, washing. ("Tidy up the desk.")
+     * **The Relaxer:** Focuses on comfort, lights, entertainment. ("I want to watch a movie.")
+     * **The Worker:** Focuses on laptops, books, coffee. ("Set up my workstation.")
+     * **The Cook:** Focuses on fridge, ingredients, dishes. ("Get the ingredients ready.")
+   - Do NOT explicitly state the persona, but write the instruction *as if* you are that person.
+
+### HANDLING INTERACTION & STATES (CRITICAL)
+
+The input scene graph lists objects but **DOES NOT** specify their current states (e.g., whether a TV is on/off, or a Fridge is open/closed).
+**You must generate state-change instructions based solely on OBJECT AFFORDANCE (what an object CAN do).**
+Assume the user wants to change the state, regardless of the current state.
+
+**1. Switchable Objects (Electronics, Lamps, Appliances)**
+   - *Target Objects:* TV, Television, Lamp, Laptop, Computer, Kettle, AirPurifier, SmartSpeaker.
+   - *Allowed Verbs:* Turn on, Turn off, Switch on, Power up.
+   - *Example:* If you see "TableLamp", generate: "Turn on the table lamp."
+
+**2. Openable Objects (Storage, Large Appliances)**
+   - *Target Objects:* Fridge, Refrigerator, Microwave, Oven, WashingMachine, Cabinet, Drawer, Laptop (lid), Book.
+   - *Allowed Verbs:* Open, Close.
+   - *Example:* If you see "Fridge", generate: "Open the fridge" or "Close the fridge."
+
+**3. Cleaning Interactions**
+   - *Target Objects:* Mug, Plate, Bowl, Glass, Fork, Spoon, Knife, Clothes, Towel.
+   - *Allowed Verbs:* Wash, Clean, Rinse, Dry, Load (into dishwasher).
+   - *Example:* If you see "Mug" and "Sink", generate: "Wash the mug in the sink."
+
+**4. Usage Interactions**
+   - *Target Objects:* Bed (Make/Sleep), Chair (Sit), Plant (Water), TrashCan (Empty).
+   - *Allowed Verbs:* Water (the plant), Empty (the bin), Make (the bed).
+   - *Example:* If you see "PottedPlant", generate: "Water the potted plant."
+
+**RULE:** Do NOT hesitate to generate these commands just because the state is missing.
+
+### ANALYSIS PROCESS - CHAIN OF THOUGHT (CoT)
+
+Before generating each instruction, follow this Chain of Thought process to think like a human:
+
+**Step 1 (Locate Objects):**
+   - Identify relevant objects and locations in the scene graph
+   - What objects are in the scene?
+   - Where are they located?
+   - What furniture/containers are available?
+   - Consider object relationships (e.g., objects inside containers)
+
+**Step 2 (Plan Action):**
+   - Determine the sequence of actions needed
+   - Consider robot constraints (single-arm, one object at a time)
+   - Plan the logical flow: what needs to happen first, second, etc.
+   - For Complex instructions: plan multi-step sequences with dependencies
+   - For Vague instructions: infer what objects/actions would fulfill the goal
+   - Identify potential interactions:
+     * Eating/Drinking: Food + Container + Location
+     * Cleaning: Dirty objects + Sink/Faucet
+     * Cooking: Raw food + Cooking equipment
+     * Reading: Books + Light + Comfortable location
+     * Organization: Objects + Storage locations
+     * **State Changes:** Open/Close, Turn on/off, Wash/Clean, Water/Empty (based on object affordance)
+
+**Step 3 (Synthesize/Generalize):**
+   - For Simple/Complex: Convert the plan into a specific, direct command
+   - For Vague: Generalize the goal into a natural, human-like request
+   - Use natural language that sounds like what a real person would say
+   - Consider context and user intent (e.g., "I'm hungry" → prepare food)
+
+**Generate instructions by difficulty:**
+   - **Simple**: Pick one object, move to one location OR perform a single state change (e.g., "Open the fridge", "Turn on the lamp")
+   - **Complex**: Chain multiple operations (3+ steps) combining navigation/transport with interaction/state changes
+   - **Vague**: Express needs/goals without explicit objects, requiring inference
+
+### OUTPUT FORMAT (JSON)
+
+You must return a JSON object with this structure:
+
+```json
+{
+  "scene_id": 0,
+  "instructions": {
+    "simple": [
+      {
+        "cot_analysis": {
+          "step1_locate_objects": "Identified CellPhone in the scene and target location Bed.",
+          "step2_plan_action": "The robot can pick up the phone and place it on the bed surface.",
+          "step3_synthesize": "Convert the physical movement into a specific, direct command."
+        },
+        "target_objects": ["CellPhone"],
+        "target_locations": ["Bed"],
+        "instruction": "Put the phone on the bed",
+        "difficulty": "simple",
+        "steps": 1,
+        "description": "Single-step operation: move phone to bed"
+      }
+    ],
+    "complex": [
+      {
+        "cot_analysis": {
+          "step1_locate_objects": "Found Apple in Kitchen and Plate in Kitchen. Target location is DiningTable in LivingRoom.",
+          "step2_plan_action": "Create a sequential pipeline: Wash apple in kitchen -> Get plate -> Transport both to dining table.",
+          "step3_synthesize": "String together multiple sub-tasks into a cohesive workflow with clear sequence markers."
+        },
+        "target_objects": ["Apple", "Plate"],
+        "target_locations": ["Kitchen", "LivingRoom", "DiningTable"],
+        "instruction": "First go to the kitchen and wash an apple, then get a plate, finally bring them together to the living room table",
+        "difficulty": "complex",
+        "steps": 3,
+        "description": "Multi-step: wash apple, get plate, bring both to table"
+      }
+    ],
+    "vague": [
+      {
+        "cot_analysis": {
+          "step1_locate_objects": "User needs 'warm water'. Found Kettle and Cup in Kitchen. Water source implied (sink/faucet).",
+          "step2_plan_action": "Translate the abstract goal into physical actions: Fill kettle -> Heat water -> Pour into cup.",
+          "step3_generalize": "Generate an informal, human-like request that reflects the user's need rather than explicit robot steps."
+        },
+        "target_objects": ["Cup", "Kettle"],
+        "target_locations": ["Kitchen"],
+        "instruction": "Help me prepare a cup of warm water",
+        "difficulty": "vague",
+        "steps": null,
+        "description": "Goal-oriented: prepare warm water (requires inference)"
+      }
+    ]
+  }
+}
+```
+
+**CRITICAL: Include CoT Analysis for Each Instruction**
+For each instruction you generate, you MUST include a `cot_analysis` field with three steps:
+- `step1_locate_objects`: Identify relevant objects and locations in the scene
+- `step2_plan_action`: Plan the sequence of actions needed (considering robot constraints)
+- `step3_synthesize` (for simple/complex) or `step3_generalize` (for vague): Convert the plan into a natural instruction
+
+### IMPORTANT NOTES
+
+1. **ALL TEXT MUST BE IN ENGLISH** - Both instruction text and target_objects/target_locations must use English
+2. **Object names must match scene exactly** - Use the EXACT English object names from the scene description (e.g., "Apple", "CellPhone", "Bed", "Kitchen")
+3. **All instructions must be solvable** - Only use objects and locations that exist in the scene
+4. **Natural language** - Instructions should sound like what a real person would say in English
+5. **Diversity is CRITICAL** - Each instruction must be unique in:
+   - Sentence structure (imperative, interrogative, request, etc.)
+   - Action verb used
+   - Phrasing and wording
+   - Objects and locations (when possible)
+6. **No repetition** - DO NOT generate instructions that are essentially the same with minor word changes
+
+### CRITICAL: Language Requirements
+
+- **Instruction text**: MUST be in English (e.g., "Put the apple on the table")
+- **target_objects**: Use EXACT English names from scene (e.g., ["Apple"])
+- **target_locations**: Use EXACT English names from scene (e.g., ["DiningTable"])
+
+**NO CHINESE CHARACTERS ALLOWED** - All instructions, descriptions, and object names must be in English.
+
+### INPUT SCENE FORMAT
+
+You will receive a scene description in this format:
+
+```
+=== Scene {scene_id} (Index: {scene_index}) ===
+[Room: Kitchen]
+- CounterTop (contains: Apple, Bowl)
+- Fridge (contains: Egg, Milk)
+- Sink
+- Faucet
+
+[Room: LivingRoom]
+- Sofa
+- CoffeeTable
+- TVStand
+
+[Room: Bedroom]
+- Bed
+- Desk
+- Bookshelf (contains: Book)
+```
+
+Generate exactly the specified number of instructions for each difficulty category for this scene.
+Ensure maximum diversity in sentence structures, verbs, and phrasing across all instructions.
+

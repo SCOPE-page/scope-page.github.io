@@ -122,6 +122,31 @@
       box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
     }
     
+    .module-button.active {
+      background: #2563eb !important;
+      color: white !important;
+    }
+    
+    #prompt-content {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 2rem;
+      max-height: 600px;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    
+    #prompt-content:empty::before {
+      content: "Click a module button above to view its prompt template.";
+      color: #94a3b8;
+      font-style: italic;
+    }
+    
     @media (max-width: 768px) {
       .module-buttons {
         flex-direction: column;
@@ -133,6 +158,44 @@
       }
     }
   </style>
+  
+  <!-- Prompt Content Loader Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const buttons = document.querySelectorAll('.module-button');
+      const contentDiv = document.getElementById('prompt-content');
+      
+      buttons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Remove active class from all buttons
+          buttons.forEach(btn => btn.classList.remove('active'));
+          // Add active class to clicked button
+          this.classList.add('active');
+          
+          const filePath = this.getAttribute('data-file');
+          
+          // Show loading state
+          contentDiv.textContent = 'Loading...';
+          
+          // Fetch and display content
+          fetch(filePath)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Failed to load file');
+              }
+              return response.text();
+            })
+            .then(text => {
+              // Display the text content directly
+              contentDiv.textContent = text;
+            })
+            .catch(error => {
+              contentDiv.textContent = 'Error loading content: ' + error.message;
+            });
+        });
+      });
+    });
+  </script>
   
   <!-- Defer non-critical JavaScript -->
   <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -424,24 +487,24 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">SCOPE's Prompt Templates for Each Module</h2>
         <div class="module-buttons" style="display: flex; justify-content: center; gap: 0.75rem; flex-wrap: nowrap; margin: 2rem 0;">
-          <div class="module-button" style="padding: 1rem 1rem; border: 2px solid #2563eb; border-radius: 8px; background: white; color: #2563eb; font-weight: 600; cursor: pointer; transition: all 0.3s; white-space: nowrap; flex: 0 1 auto;">
-            Precondition Identifier
+          <div class="module-button" data-file="static/prompt/Scene Graph Generation.html" style="padding: 1rem 1rem; border: 2px solid #2563eb; border-radius: 8px; background: white; color: #2563eb; font-weight: 600; cursor: pointer; transition: all 0.3s; white-space: nowrap; flex: 0 1 auto;">
+            Scene Graph Generation
           </div>
-          <div class="module-button" style="padding: 1rem 1rem; border: 2px solid #2563eb; border-radius: 8px; background: white; color: #2563eb; font-weight: 600; cursor: pointer; transition: all 0.3s; white-space: nowrap; flex: 0 1 auto;">
-            Task Allocator
+          <div class="module-button" data-file="static/prompt/Instruction Generation.html" style="padding: 1rem 1rem; border: 2px solid #2563eb; border-radius: 8px; background: white; color: #2563eb; font-weight: 600; cursor: pointer; transition: all 0.3s; white-space: nowrap; flex: 0 1 auto;">
+            Instruction Generation
           </div>
-          <div class="module-button" style="padding: 1rem 1rem; border: 2px solid #2563eb; border-radius: 8px; background: white; color: #2563eb; font-weight: 600; cursor: pointer; transition: all 0.3s; white-space: nowrap; flex: 0 1 auto;">
+          <div class="module-button" data-file="static/prompt/Problem Generator.html" style="padding: 1rem 1rem; border: 2px solid #2563eb; border-radius: 8px; background: white; color: #2563eb; font-weight: 600; cursor: pointer; transition: all 0.3s; white-space: nowrap; flex: 0 1 auto;">
             Problem Generator
           </div>
-          <div class="module-button" style="padding: 1rem 1rem; border: 2px solid #2563eb; border-radius: 8px; background: white; color: #2563eb; font-weight: 600; cursor: pointer; transition: all 0.3s; white-space: nowrap; flex: 0 1 auto;">
-            PDDL Validator
+          <div class="module-button" data-file="static/prompt/Task Decomposition.html" style="padding: 1rem 1rem; border: 2px solid #2563eb; border-radius: 8px; background: white; color: #2563eb; font-weight: 600; cursor: pointer; transition: all 0.3s; white-space: nowrap; flex: 0 1 auto;">
+            Task Decomposition
           </div>
-          <div class="module-button" style="padding: 1rem 1rem; border: 2px solid #2563eb; border-radius: 8px; background: white; color: #2563eb; font-weight: 600; cursor: pointer; transition: all 0.3s; white-space: nowrap; flex: 0 1 auto;">
-            Sub-Plan Combiner
+          <div class="module-button" data-file="static/prompt/Plan Evaluation.html" style="padding: 1rem 1rem; border: 2px solid #2563eb; border-radius: 8px; background: white; color: #2563eb; font-weight: 600; cursor: pointer; transition: all 0.3s; white-space: nowrap; flex: 0 1 auto;">
+            Plan Evaluation
           </div>
         </div>
-        <div class="content has-text-justified">
-          <!-- Content will be added here -->
+        <div id="prompt-content" class="content has-text-justified" style="margin-top: 2rem; min-height: 200px;">
+          <!-- Content will be loaded here when button is clicked -->
         </div>
       </div>
     </div>
