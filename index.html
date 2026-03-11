@@ -132,13 +132,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 400px;
+      padding: 1rem;
+      min-height: 500px;
     }
     
     .results-carousel .item video {
-      max-height: 600px;
-      width: auto;
-      max-width: 100%;
+      width: 100%;
+      max-width: 1200px;
+      height: auto;
+      max-height: 700px;
+      object-fit: contain;
+      background: #000;
     }
     
     @media (max-width: 768px) {
@@ -152,6 +156,7 @@
       }
       .results-carousel .item {
         min-height: 300px;
+        padding: 0.5rem;
       }
       .results-carousel .item video {
         max-height: 400px;
@@ -414,18 +419,21 @@
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
        <div class="item">
-        <video controls muted loop playsinline preload="auto" style="max-width: 100%; height: auto; display: block;">
+        <video controls muted loop playsinline preload="metadata" width="100%" height="auto">
           <source src="static/videos/laptop.mp4" type="video/mp4">
+          Your browser does not support the video tag.
         </video>
       </div>
       <div class="item">
-        <video controls muted loop playsinline preload="auto" style="max-width: 100%; height: auto; display: block;">
+        <video controls muted loop playsinline preload="metadata" width="100%" height="auto">
           <source src="static/videos/egg.mp4" type="video/mp4">
+          Your browser does not support the video tag.
         </video>
       </div>
       <div class="item">
-        <video controls muted loop playsinline preload="auto" style="max-width: 100%; height: auto; display: block;">
+        <video controls muted loop playsinline preload="metadata" width="100%" height="auto">
           <source src="static/videos/apple.mp4" type="video/mp4">
+          Your browser does not support the video tag.
         </video>
       </div>
   </div>
