@@ -127,6 +127,19 @@
       color: white !important;
     }
     
+    /* Carousel video styles */
+    .results-carousel .item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+    }
+    
+    .results-carousel .item video {
+      max-height: 600px;
+      width: auto;
+      max-width: 100%;
+    }
     
     @media (max-width: 768px) {
       .module-buttons {
@@ -136,6 +149,12 @@
       .module-button {
         width: 100%;
         max-width: 300px;
+      }
+      .results-carousel .item {
+        min-height: 300px;
+      }
+      .results-carousel .item video {
+        max-height: 400px;
       }
     }
   </style>
@@ -395,17 +414,17 @@
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
        <div class="item">
-        <video autoplay controls muted loop style="width: 100%; max-width: 100%; display: block;">
+        <video controls muted loop playsinline preload="auto" style="max-width: 100%; height: auto; display: block;">
           <source src="static/videos/laptop.mp4" type="video/mp4">
         </video>
       </div>
       <div class="item">
-        <video autoplay controls muted loop style="width: 100%; max-width: 100%; display: block;">
+        <video controls muted loop playsinline preload="auto" style="max-width: 100%; height: auto; display: block;">
           <source src="static/videos/egg.mp4" type="video/mp4">
         </video>
       </div>
       <div class="item">
-        <video autoplay controls muted loop style="width: 100%; max-width: 100%; display: block;">
+        <video controls muted loop playsinline preload="auto" style="max-width: 100%; height: auto; display: block;">
           <source src="static/videos/apple.mp4" type="video/mp4">
         </video>
       </div>
