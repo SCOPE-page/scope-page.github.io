@@ -749,5 +749,88 @@ a:focus {
   }
 }
 
+/* SCOPE hero title refresh */
+.scope-title-block {
+  max-width: 1180px;
+  margin: 0 auto 1.35rem;
+  text-align: center;
+}
 
+.scope-title-acronym {
+  color: #0f172a;
+  font-size: 96px;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+
+.scope-title-rule {
+  width: 96px;
+  height: 4px;
+  margin: 1rem auto 1.2rem;
+  border-radius: 999px;
+  background: #2563eb;
+}
+
+.scope-title-full {
+  max-width: 1080px;
+  margin: 0 auto;
+  color: #1e293b;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: 0;
+}
+
+.scope-title-full span {
+  display: block;
+}
+
+.method-overview p {
+  margin-bottom: 1.1rem;
+}
+
+@media (max-width: 1024px) {
+  .scope-title-acronym {
+    font-size: 76px;
+  }
+
+  .scope-title-full {
+    font-size: 31px;
+  }
+}
+
+@media (max-width: 640px) {
+  .scope-title-acronym {
+    font-size: 52px;
+  }
+
+  .scope-title-full {
+    font-size: 24px;
+  }
+
+  .scope-title-full span {
+    display: inline;
+  }
+}
+
+/* Keep the lab works control from covering paper text on narrow screens. */
+@media (max-width: 640px) {
+  .more-works-container {
+    position: static;
+    display: flex;
+    justify-content: center;
+    padding: 0.75rem 1rem 0;
+  }
+
+  .more-works-dropdown {
+    position: fixed;
+    top: 0.75rem;
+    right: 0.75rem;
+    bottom: auto;
+    left: 0.75rem;
+    width: auto;
+    max-width: none;
+  }
+}
 

@@ -8,11 +8,11 @@
   <!-- TODO: Replace with your paper title and author names -->
   <meta name="title" content="SCOPE: Scene-graph Construction Optimized by Plan Error-correction for Robot Long-term Planning Datasets">
   <!-- TODO: Write a compelling 150-160 character description of your research -->
-  <meta name="description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
+  <meta name="description" content="SCOPE is an automated framework for generating diverse and executable TAMP datasets through diversity-aware scene graph construction and plan feedback error-correction.">
   <!-- TODO: Add 5-10 relevant keywords for your research area -->
   <meta name="keywords" content="KEYWORD1, KEYWORD2, KEYWORD3, machine learning, computer vision, AI">
   <!-- TODO: List all authors -->
-  <meta name="author" content="FIRST_AUTHOR_NAME, SECOND_AUTHOR_NAME">
+  <meta name="author" content="Chaoyue Li, Zeyu Gao, Yanfeng Lu, Fan Luo">
   <meta name="robots" content="index, follow">
   <meta name="language" content="English">
   
@@ -23,7 +23,7 @@
   <!-- TODO: Same as paper title above -->
   <meta property="og:title" content="SCOPE: Scene-graph Construction Optimized by Plan Error-correction for Robot Long-term Planning Datasets">
   <!-- TODO: Same as description above -->
-  <meta property="og:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
+  <meta property="og:description" content="SCOPE is an automated framework for generating diverse and executable TAMP datasets through diversity-aware scene graph construction and plan feedback error-correction.">
   <!-- TODO: Replace with your actual website URL -->
   <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
   <!-- TODO: Create a 1200x630px preview image and update path -->
@@ -44,15 +44,15 @@
   <!-- TODO: Replace with first author's Twitter handle -->
   <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
   <!-- TODO: Same as paper title above -->
-  <meta name="twitter:title" content="PAPER_TITLE">
+  <meta name="twitter:title" content="SCOPE: Scene-graph Construction Optimized by Plan Error-correction for Robot Long-term Planning Datasets">
   <!-- TODO: Same as description above -->
-  <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
+  <meta name="twitter:description" content="SCOPE is an automated framework for generating diverse and executable TAMP datasets through diversity-aware scene graph construction and plan feedback error-correction.">
   <!-- TODO: Same as social preview image above -->
   <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
   <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview">
 
   <!-- Academic/Research Specific -->
-  <meta name="citation_title" content="PAPER_TITLE">
+  <meta name="citation_title" content="SCOPE: Scene-graph Construction Optimized by Plan Error-correction for Robot Long-term Planning Datasets">
   <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
   <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
   <meta name="citation_publication_date" content="2024">
@@ -74,7 +74,7 @@
 
 
   <!-- TODO: Replace with your paper title and authors -->
-  <title>PAPER_TITLE - AUTHOR_NAMES | Academic Research</title>
+  <title>SCOPE: Scene-graph Construction Optimized by Plan Error-correction for Robot Long-term Planning Datasets</title>
   
   <!-- Favicon and App Icons -->
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
@@ -154,7 +154,7 @@
     "@context": "https://schema.org",
     "@type": "ScholarlyArticle",
     "headline": "SCOPE: Scene-graph Construction Optimized by Plan Error-correction for Robot Long-term Planning Datasets",
-    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
+    "description": "SCOPE is an automated framework for generating diverse and executable TAMP datasets through diversity-aware scene graph construction and plan feedback error-correction.",
     "author": [
       {
         "@type": "Person",
@@ -278,8 +278,14 @@
     <div class="hero-body">
       <div class="container" style="max-width: 1600px; margin: 0 auto;">
         <div class="has-text-centered">
-          <!-- TODO: Replace with your paper title -->
-          <h1 class="title is-1 publication-title"><strong>SCOPE</strong>: Scene-graph Construction Optimized by Plan Error-correction for Robot Long-term Planning Datasets</h1>
+          <div class="scope-title-block">
+            <div class="scope-title-acronym">SCOPE</div>
+            <div class="scope-title-rule" aria-hidden="true"></div>
+            <h1 class="title publication-title scope-title-full" aria-label="SCOPE: Scene-graph Construction Optimized by Plan Error-correction for Robot Long-term Planning Datasets">
+              <span>Scene-graph Construction Optimized by Plan Error-correction</span>
+              <span>for Robot Long-term Planning Datasets</span>
+            </h1>
+          </div>
           <div class="is-size-5 publication-authors">
             <span class="author-block">Chaoyue Li<sup>1,2,*</sup>,</span>
             <span class="author-block">Zeyu Gao<sup>1,2,*</sup>,</span>
@@ -324,13 +330,14 @@
             level diversity metrics to maximize the information entropy
             of scenarios. Crucially, it introduces a Plan Feedback Error-
             correction pipeline that utilizes planner execution failures as
-            feedback signals to retroactively rectify logical inconsistencies in
-            scene graphs, ensuring physical feasibility. Extensive experiments
-            demonstrate that SCOPE is more robust to erroneous scene
-            graphs and achieves higher data generation quality. When
-            utilized for LLM fine-tuning, the resulting downstream TAMP
-            model attains a 12.33% improvement in success rate over
-            the SOTA PDDL-based algorithm DELTA.
+            feedback signals to retroactively rectify logical inconsistencies
+            in scene graphs, ensuring physical feasibility. Experimental
+            results demonstrate that SCOPE exhibits greater robustness to
+            erroneous scene graphs and generates higher-quality data. When
+            utilized for LLM fine-tuning, SCOPE-generated data yield a
+            downstream TAMP model that achieves an absolute 12.33%
+            gain in success rate over its counterpart fine-tuned with data
+            generated by DELTA, a state-of-the-art PDDL-based planner.
           </p>
         </div>
       </div>
@@ -357,25 +364,28 @@
 </section>
 <!-- End teaser video -->
 
-<!-- Framework -->
+<!-- Method -->
 <section class="section hero is-light">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Framework</h2>
-        <div class="content has-text-justified">
+        <h2 class="title is-3">Method Overview</h2>
+        <div class="content has-text-justified method-overview">
           <p>
-            The SCOPE pipeline synergistically constructs scene-instruction pairs. During scene generation, the system integrates external statistical feedback with dynamic asset sampling, compelling LLMs to explore long-tail distributions via an inverse-frequency weighting strategy. To avoid logical errors from directly generating complex topologies, the model outputs a lightweight Domain-Specific Language (DSL) that a compiler losslessly maps into the scene graph $SG$. Subsequently, the system linearizes the nested scene graph into concise text. Leveraging LLM generative CoT reasoning, it synthesizes task instructions following the sequence: Target Sampling $\rightarrow$ Action Chain Construction $\rightarrow$ Instruction Language Embodiment. After filtering hallucinations via set-matching-based physical feasibility verification, the pipeline outputs valid task instructions $I$.
+            <strong>Diverse scene graph generation.</strong> To mitigate the homogeneity of LLM-generated scenes, SCOPE combines statistical feedback with dynamic sampling. A room composition tracker estimates the empirical distribution of generated room types, and an entropy-aware inverse-frequency weighting strategy encourages exploration of underrepresented layouts. At the asset level, SCOPE injects restricted furniture and object subsets into prompts, while a lightweight DSL constructs scenes through a coarse-to-fine process from rooms, to furniture, to object placement.
           </p>
           <p>
-            To guarantee task physical executability, the pipeline transforms the tuple $\langle SG, I \rangle$ into a PDDL problem, decomposing it into serialized sub-tasks delegated to a heuristic planner for sequential resolution and verification. Confronted with resolution failures, the system discards the passive discard-on-error strategy. Instead, it retroactively calculates the structural state deficiency $\sigma_{i}$ responsible for the failure and triggers a Symbolic Rule-Neural Network dual-layer module to precisely complete missing physical attributes. The repaired scene state autoregressively returns to the planner for continued planning until all valid sub-plans $\pi_{i}$ concatenate into a complete execution sequence $\Pi$. This Decomposition-Planning-Repair closed loop ultimately yields a high-quality data tuple $\mathcal{E} = \langle SG_{final}, I, \Pi \rangle$, providing robust data for fine-tuning embodied models.
+            <strong>Chain-of-Thought driven instruction generation.</strong> Given a scene graph, SCOPE generates semantically rich and difficulty-graded task instructions through a strict reasoning sequence: Target Sampling, Action Chain Construction, and Instruction Language Embodiment. The LLM first identifies interactive objects and spatial relations, then builds a causal action chain that leads to the target state, and finally maps the chain into natural language instructions. A set-matching verification step filters out instructions whose target objects or locations are not grounded in the scene.
+          </p>
+          <p>
+            <strong>Plan feedback error-correction.</strong> SCOPE decomposes each instruction into PDDL sub-goals and uses a classical planner as both solver and verifier. When planning fails, the failed action is traced back to missing preconditions or invalid scene states. A Symbolic Rule-LLM repair module injects the required attributes or initial states into the scene graph, then replans until executable sub-plans are obtained. This closed loop yields the final tuple &lt;SG<sub>final</sub>, I, &Pi;&gt; for robust downstream fine-tuning.
           </p>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- End Framework -->
+<!-- End Method -->
 
 <!-- Framework Image -->
 <section class="section hero is-light" style="padding-left: 0; padding-right: 0;">
