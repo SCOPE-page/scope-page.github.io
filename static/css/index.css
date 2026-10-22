@@ -786,6 +786,40 @@ a:focus {
   display: block;
 }
 
+.scope-venue {
+  color: var(--primary-color);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.scope-resource-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.button.scope-resource-button {
+  width: 224px;
+  max-width: 100%;
+  height: 48px;
+  margin: 0 !important;
+  padding: 0 18px !important;
+  font-size: 16px !important;
+  letter-spacing: 0;
+  background: #ffffff !important;
+  color: var(--text-primary) !important;
+  border: 1px solid #d4e0e5 !important;
+  border-radius: 8px !important;
+  box-shadow: none;
+}
+
+.button.scope-resource-button[disabled] {
+  opacity: 1;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .method-overview p {
   margin-bottom: 1.1rem;
 }
